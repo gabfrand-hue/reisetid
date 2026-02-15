@@ -3,159 +3,192 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOK Infoportal</title>
+<title>Industri Ufokus – Infoportal</title>
 
 <style>
 body{
-    font-family:Arial;
-    background:#f3f4f6;
     margin:0;
-    padding:20px;
+    font-family: Arial, sans-serif;
+    background:linear-gradient(135deg,#eef2f7,#f8fafc);
 }
+
+.nav{
+    position:sticky;
+    top:0;
+    background:white;
+    padding:18px 28px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    z-index:100;
+}
+
+.nav a{
+    text-decoration:none;
+    font-weight:600;
+    margin-right:18px;
+    color:#111827;
+}
+
 .container{
-    max-width:900px;
-    margin:auto;
+    max-width:1000px;
+    margin:60px auto;
+    padding:0 20px;
 }
+
 .card{
     background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    border-radius:18px;
+    padding:50px;
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.08),
+        0 4px 12px rgba(0,0,0,0.04);
 }
-.hidden{ display:none; }
+
+h1{
+    margin-top:0;
+    font-size:44px;
+    letter-spacing:-0.5px;
+}
+
+h2{
+    margin-top:35px;
+}
+
+.ref{
+    margin-top:10px;
+    padding:12px;
+    background:#f1f5f9;
+    border-left:4px solid #111827;
+    font-size:14px;
+}
 
 input{
     width:100%;
-    padding:10px;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #d1d5db;
     margin-top:10px;
-    border:1px solid #ccc;
-    border-radius:6px;
+    font-size:16px;
 }
+
 button{
-    margin-top:10px;
-    padding:10px;
+    margin-top:15px;
+    padding:14px;
     width:100%;
+    border-radius:10px;
+    border:none;
     background:#111827;
     color:white;
-    border:none;
-    border-radius:6px;
+    font-weight:600;
     cursor:pointer;
 }
-.nav{
-    margin-bottom:20px;
+
+button:hover{
+    opacity:0.9;
 }
-.nav a{
-    margin-right:10px;
-    font-weight:bold;
-    text-decoration:none;
-}
-.ref{
-    background:#f9fafb;
-    border-left:4px solid #111827;
-    padding:10px;
-    margin-top:10px;
+
+.hidden{ display:none; }
+.center{ text-align:center; }
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:25px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<!-- LOGIN -->
-<div id="loginBox" class="card">
-<h2>🔒 Intern infoportal</h2>
-<p>Legg inn passord for tilgang.</p>
-
+<div id="loginScreen" class="container">
+<div class="card center">
+<div class="logo">Industri Ufokus</div>
+<h2>🔒 Intern Infoportal</h2>
 <input type="password" id="password" placeholder="Passord">
-<button onclick="checkPassword()">Logg inn</button>
-
+<button onclick="login()">Logg inn</button>
 <p id="error" style="color:red;"></p>
 </div>
+</div>
 
-<!-- MAIN CONTENT -->
-<div id="content" class="hidden">
+<div id="mainContent" class="hidden">
 
 <div class="nav">
 <a href="index.html">📘 Første mobilisering</a>
 <a href="kalkulator.html">🧮 Kalkulator</a>
 </div>
 
+<div class="container">
 <div class="card">
 
 <h1>Første mobilisering og veien videre</h1>
 
 <p>
-Hos oss har vi en <b>godkjent rotasjonsordning</b>.  
-Denne siden gir grunnleggende info for nye ansatte.
+Hos oss har vi en <strong>godkjent rotasjonsordning</strong>. 
+Dette betyr at arbeidstidsplanen er avtalt og godkjent i henhold til tariff og arbeidsmiljøloven.
 </p>
 
-<h2>1. Rotasjon</h2>
+<h2>1. Hva betyr rotasjon?</h2>
 <p>
-Rotasjon gjelder når du ikke kan ha nattkvarter hjemme og jobber på anlegg.
+Rotasjon gjelder når du ikke kan ha nattkvarter hjemme og jobber på anlegg/prosjekt.
+Eksempel: Bor i Drammen – jobber på Stord – bor borte i arbeidsperioden.
 </p>
-<div class="ref">LOK §9 A – Definisjon</div>
+<div class="ref">Tariff: LOK §9 A</div>
 
 <h2>2. Før mobilisering</h2>
 <p>
 Arbeidsplan, reise og opphold skal være avklart før oppstart.
+Godkjent rotasjon betyr at arbeidstiden er ordinær etter planen.
 </p>
-<div class="ref">LOK §9 F</div>
+<div class="ref">Tariff: LOK §9 F</div>
 
 <h2>3. Reiser</h2>
 <p>
 Reiser mellom hjemsted og anlegg reguleres av LOK §9.
+Reiseutgifter og bestemmelser om reisetid følger tariffen.
 </p>
-<div class="ref">LOK §9 E pkt.4</div>
+<div class="ref">Tariff: LOK §9 E pkt.4</div>
 
-<h2>4. Betalte reiser</h2>
+<h2>4. Betalbare reiser</h2>
 <p>
-Oppstart, avslutning og ferieperioder er betalingspliktige.
+Reisetid betales ved oppstart, avslutning og ferieperioder (jul, vinter, påske, pinse, sommer, høst).
 </p>
-<div class="ref">LOK §9 F</div>
+<div class="ref">Tariff: LOK §9 F</div>
 
 <h2>5. Diett</h2>
 <p>
-Diett følger reiser som omfattes av tariffen.
+Diett gis under reiser som omfattes av tariffens reisebestemmelser.
 </p>
-<div class="ref">LOK §9 K pkt.3</div>
+<div class="ref">Tariff: LOK §9 K pkt.3</div>
 
 <h2>6. Arbeidstid</h2>
 <p>
-Godkjent rotasjon = ordinær arbeidstid etter planen.
+Godkjent rotasjon = ordinær arbeidstid etter plan.
+Sykelønn beregnes etter planlagte timer.
 </p>
-<div class="ref">LOK §9 F</div>
+<div class="ref">Tariff: LOK §9 F</div>
 
 </div>
-
 </div>
+
 </div>
 
 <script>
-
 const PASSWORD = "Ufokus";
 
-function checkPassword(){
+function login(){
     let input = document.getElementById("password").value;
-
     if(input === PASSWORD){
         localStorage.setItem("loggedIn","true");
-        showContent();
+        document.getElementById("loginScreen").style.display="none";
+        document.getElementById("mainContent").classList.remove("hidden");
     } else {
         document.getElementById("error").innerText="Feil passord";
     }
 }
 
-function showContent(){
-    document.getElementById("loginBox").style.display="none";
-    document.getElementById("content").classList.remove("hidden");
-}
-
-// auto login if already authenticated
 if(localStorage.getItem("loggedIn")==="true"){
-    showContent();
+    document.getElementById("loginScreen").style.display="none";
+    document.getElementById("mainContent").classList.remove("hidden");
 }
-
 </script>
 
 </body>
