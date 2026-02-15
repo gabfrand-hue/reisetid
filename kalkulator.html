@@ -1,88 +1,107 @@
 <!DOCTYPE html>
-
-<div style="margin-bottom:20px;">
-  <a href="index.html">🧮 Kalkulator</a> |
-  <a href="mobilisering.html">📘 Første mobilisering</a>
-</div>
-
-
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOK §9F Reisetid & Diett kalkulator</title>
+<title>LOK §9F Kalkulator</title>
 
 <style>
 body{
-    font-family:Arial, sans-serif;
-    background:#f3f4f6;
     margin:0;
-    padding:20px;
+    font-family: Arial;
+    background:linear-gradient(135deg,#eef2f7,#f8fafc);
 }
+
+.nav{
+    background:white;
+    padding:18px 28px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+
+.nav a{
+    text-decoration:none;
+    font-weight:600;
+    margin-right:18px;
+    color:#111827;
+}
+
 .container{
-    max-width:900px;
-    margin:auto;
+    max-width:1000px;
+    margin:60px auto;
+    padding:0 20px;
 }
+
 .card{
     background:white;
-    padding:20px;
-    margin-bottom:15px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    border-radius:18px;
+    padding:50px;
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.08),
+        0 4px 12px rgba(0,0,0,0.04);
 }
+
+h1{
+    margin-top:0;
+    font-size:44px;
+}
+
 label{
-    font-weight:bold;
+    font-weight:600;
     display:block;
-    margin-top:12px;
+    margin-top:20px;
 }
-input,select{
+
+input, select{
     width:100%;
-    padding:8px;
-    margin-top:4px;
-    border:1px solid #ccc;
-    border-radius:6px;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #d1d5db;
+    margin-top:6px;
 }
-.row{ display:flex; gap:10px; }
+
+.row{
+    display:flex;
+    gap:10px;
+}
 
 .result{
+    margin-top:30px;
+    padding:25px;
     background:#111827;
     color:white;
-    padding:20px;
     border-radius:12px;
+    font-size:18px;
 }
+
 .big{
     font-size:28px;
-    font-weight:bold;
+    font-weight:700;
 }
+
 img{
     width:100%;
-    border-radius:10px;
-    margin-top:10px;
-}
-.small{
-    font-size:13px;
-    color:#666;
+    margin-top:20px;
+    border-radius:12px;
 }
 </style>
 </head>
 
 <body>
 
+<div class="nav">
+<a href="index.html">📘 Første mobilisering</a>
+<a href="kalkulator.html">🧮 Kalkulator</a>
+</div>
+
 <div class="container">
-
 <div class="card">
-<h1>LOK §9F Reisetid & Diett kalkulator</h1>
 
-<p class="small">
-Reisetid: 50% overtid.<br>
-Diett gis på 7 rotasjoner (hver vei).<br>
-Beløp fordeles som gjennomsnitt per rotasjon.
-</p>
+<h1>LOK §9F Reisetid & Diett kalkulator</h1>
 
 <label>Rotasjon</label>
 <select id="rotation">
-<option value="35">14/21 (35 dager syklus)</option>
-<option value="35">15/20 (35 dager syklus)</option>
+<option value="35">14/21</option>
+<option value="35">15/20</option>
 </select>
 
 <label>Første arbeidsdag</label>
@@ -90,8 +109,8 @@ Beløp fordeles som gjennomsnitt per rotasjon.
 
 <label>Reisetid én vei</label>
 <div class="row">
-<input type="number" id="hours" value="6" placeholder="Timer">
-<input type="number" id="minutes" value="0" placeholder="Minutter">
+<input type="number" id="hours" value="6">
+<input type="number" id="minutes" value="0">
 </div>
 
 <label>Timeslønn (kr)</label>
@@ -99,97 +118,66 @@ Beløp fordeles som gjennomsnitt per rotasjon.
 
 <label>Diett sats (hver vei)</label>
 <select id="dietRate">
-<option value="0">0–6 timer (0 kr)</option>
 <option value="384">6–12 timer (384 kr)</option>
-<option value="713">Over 12 timer uten overnatting (713 kr)</option>
+<option value="713">Over 12 timer (713 kr)</option>
 <option value="977">Med overnatting (977 kr)</option>
 </select>
 
 <label>Betalbare rotasjoner</label>
 <input type="number" id="paidTrips" value="7">
 
-</div>
-
-<div class="card">
-<h2>Diett satser (LOK §9 K)</h2>
-
-<!-- Works locally + on Vercel -->
-<img src="./reise.png" alt="Diett satser">
-
-</div>
-
 <div class="result">
-<p>Rotasjoner per år: <b id="rotations"></b></p>
-<p>Timesats inkl 50% OT: <b id="otRate"></b> kr</p>
-<p>Reisetid tur/retur: <b id="travelPerTrip"></b> kr</p>
-<p>Diett tur/retur: <b id="dietPerTrip"></b> kr</p>
-<p>Total pr år: <b id="yearTotal"></b> kr</p>
-<hr>
-<p class="big">
-Gjennomsnitt pr rotasjon:
-<span id="avgPerRotation"></span> kr
-</p>
+<p>Rotasjoner per år: <span id="rotations"></span></p>
+<p>Total pr år: <span id="yearTotal"></span> kr</p>
+<p class="big">Snitt pr rotasjon: <span id="avg"></span> kr</p>
 </div>
 
+<img src="reise.png" alt="Diett satser">
+
+</div>
 </div>
 
 <script>
-
-function countRotations(startDate, cycleDays){
-    if(!startDate) return 0;
-
-    let start = new Date(startDate);
-    let end = new Date(start);
+function countRotations(start,cycle){
+    if(!start) return 0;
+    let s=new Date(start);
+    let end=new Date(s);
     end.setFullYear(end.getFullYear()+1);
-
-    let count = 0;
-    let current = new Date(start);
-
-    while(current < end){
+    let count=0;
+    while(s<end){
         count++;
-        current.setDate(current.getDate()+cycleDays);
+        s.setDate(s.getDate()+cycle);
     }
     return count;
 }
 
 function calc(){
+    let cycle=35;
+    let start=document.getElementById("startDate").value;
+    let hours=parseFloat(document.getElementById("hours").value)||0;
+    let minutes=parseFloat(document.getElementById("minutes").value)||0;
+    let rate=parseFloat(document.getElementById("rate").value)||0;
+    let paid=parseFloat(document.getElementById("paidTrips").value)||0;
+    let diet=parseFloat(document.getElementById("dietRate").value)||0;
 
-    let startDate = document.getElementById("startDate").value;
-    let cycle = parseInt(document.getElementById("rotation").value);
+    let rotations=countRotations(start,cycle);
+    let totalHours=hours+(minutes/60);
+    let overtime=rate*1.5;
+    let travel=totalHours*2*overtime;
+    let dietTotal=diet*2;
+    let year=(travel+dietTotal)*paid;
+    let avg=rotations>0?year/rotations:0;
 
-    let hours = parseFloat(document.getElementById("hours").value)||0;
-    let minutes = parseFloat(document.getElementById("minutes").value)||0;
-    let rate = parseFloat(document.getElementById("rate").value)||0;
-    let paidTrips = parseFloat(document.getElementById("paidTrips").value)||0;
-    let dietRate = parseFloat(document.getElementById("dietRate").value)||0;
-
-    let rotations = countRotations(startDate, cycle);
-
-    let totalHours = hours + (minutes/60);
-    let overtimeRate = rate * 1.5;
-
-    let travelPerTrip = totalHours * 2 * overtimeRate;
-    let dietPerTrip = dietRate * 2;
-
-    let yearTotal = (travelPerTrip + dietPerTrip) * paidTrips;
-    let avgPerRotation = rotations > 0 ? yearTotal / rotations : 0;
-
-    document.getElementById("rotations").innerText = rotations;
-    document.getElementById("otRate").innerText = overtimeRate.toFixed(2);
-    document.getElementById("travelPerTrip").innerText = travelPerTrip.toFixed(2);
-    document.getElementById("dietPerTrip").innerText = dietPerTrip.toFixed(2);
-    document.getElementById("yearTotal").innerText = yearTotal.toFixed(2);
-    document.getElementById("avgPerRotation").innerText = avgPerRotation.toFixed(2);
+    document.getElementById("rotations").innerText=rotations;
+    document.getElementById("yearTotal").innerText=year.toFixed(2);
+    document.getElementById("avg").innerText=avg.toFixed(2);
 }
 
 document.querySelectorAll("input,select").forEach(el=>{
     el.addEventListener("input",calc);
 });
-
 calc();
-
 </script>
 
 </body>
 </html>
-
