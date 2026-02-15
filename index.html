@@ -8,7 +8,7 @@
 <style>
 body{
     margin:0;
-    font-family: Arial, sans-serif;
+    font-family:Arial, sans-serif;
     background:linear-gradient(135deg,#eef2f7,#f8fafc);
 }
 
@@ -41,12 +41,12 @@ body{
     box-shadow:
         0 20px 40px rgba(0,0,0,0.08),
         0 4px 12px rgba(0,0,0,0.04);
+    margin-bottom:30px;
 }
 
 h1{
     margin-top:0;
     font-size:44px;
-    letter-spacing:-0.5px;
 }
 
 h2{
@@ -82,10 +82,6 @@ button{
     cursor:pointer;
 }
 
-button:hover{
-    opacity:0.9;
-}
-
 .hidden{ display:none; }
 .center{ text-align:center; }
 
@@ -93,6 +89,26 @@ button:hover{
     font-size:28px;
     font-weight:700;
     margin-bottom:25px;
+}
+
+/* Tillitsvalgt section */
+.tv-box{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:25px;
+    margin-top:20px;
+}
+
+.tv-person{
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.tv-person:last-child{
+    border-bottom:none;
+    margin-bottom:0;
 }
 </style>
 </head>
@@ -117,6 +133,7 @@ button:hover{
 </div>
 
 <div class="container">
+
 <div class="card">
 
 <h1>Første mobilisering og veien videre</h1>
@@ -126,57 +143,92 @@ Hos oss har vi en <strong>godkjent rotasjonsordning</strong>.
 Dette betyr at arbeidstidsplanen er avtalt og godkjent i henhold til tariff og arbeidsmiljøloven.
 </p>
 
-<h2>1. Hva betyr rotasjon?</h2>
-<p>
-Rotasjon gjelder når du ikke kan ha nattkvarter hjemme og jobber på anlegg/prosjekt.
-Eksempel: Bor i Drammen – jobber på Stord – bor borte i arbeidsperioden.
-</p>
+<h2>1. Rotasjon</h2>
+<p>Rotasjon gjelder når du ikke kan ha nattkvarter hjemme og jobber på anlegg.</p>
 <div class="ref">Tariff: LOK §9 A</div>
 
 <h2>2. Før mobilisering</h2>
-<p>
-Arbeidsplan, reise og opphold skal være avklart før oppstart.
-Godkjent rotasjon betyr at arbeidstiden er ordinær etter planen.
-</p>
+<p>Arbeidsplan, reise og opphold skal være avklart før oppstart.</p>
 <div class="ref">Tariff: LOK §9 F</div>
 
 <h2>3. Reiser</h2>
-<p>
-Reiser mellom hjemsted og anlegg reguleres av LOK §9.
-Reiseutgifter og bestemmelser om reisetid følger tariffen.
-</p>
+<p>Reiser mellom hjemsted og anlegg reguleres av LOK §9.</p>
 <div class="ref">Tariff: LOK §9 E pkt.4</div>
 
 <h2>4. Betalbare reiser</h2>
-<p>
-Reisetid betales ved oppstart, avslutning og ferieperioder (jul, vinter, påske, pinse, sommer, høst).
-</p>
+<p>Oppstart, avslutning og ferieperioder er betalingspliktige.</p>
 <div class="ref">Tariff: LOK §9 F</div>
 
 <h2>5. Diett</h2>
-<p>
-Diett gis under reiser som omfattes av tariffens reisebestemmelser.
-</p>
+<p>Diett følger reiser som omfattes av tariffen.</p>
 <div class="ref">Tariff: LOK §9 K pkt.3</div>
 
 <h2>6. Arbeidstid</h2>
-<p>
-Godkjent rotasjon = ordinær arbeidstid etter plan.
-Sykelønn beregnes etter planlagte timer.
-</p>
+<p>Godkjent rotasjon = ordinær arbeidstid etter plan.</p>
 <div class="ref">Tariff: LOK §9 F</div>
 
 </div>
+
+<!-- TILLITSVALGT SECTION -->
+<div class="card">
+
+<h1>🤝 Tillitsvalgt</h1>
+
+<p>
+Terskelen for å kontakte tillitsvalgte skal være lav.  
+Tillitsvalgte er her for å hjelpe deg med spørsmål om arbeidstid, rotasjon, lønn, reise, diett, arbeidsmiljø og generelle utfordringer på jobb.
+</p>
+
+<p>
+De tillitsvalgte representerer de ansatte og jobber for at tariffavtale, avtaler og praksis følges riktig.  
+Er du usikker på noe — spør heller en gang for mye enn en gang for lite.
+</p>
+
+<div class="tv-box">
+
+<div class="tv-person">
+<strong>Leder – Stian Berg</strong><br>
+Telefon: +47 957 45 404<br>
+Epost: stianberg96@outlook.com
 </div>
 
+<div class="tv-person">
+<strong>Nestleder – Gabriel Attermann Frandsen</strong><br>
+Telefon: +47 400 54 274<br>
+Epost: gab.frand@gmail.com
+</div>
+
+<div class="tv-person">
+<strong>Gaute Hvammen</strong><br>
+Telefon: +47 951 23 094<br>
+Epost: gaute@industrifokus.no
+</div>
+
+<div class="tv-person">
+<strong>Håkon Wedding</strong><br>
+Telefon: +47 459 18 601<br>
+Epost: haakon@industrifokus.no
+</div>
+
+<div class="tv-person">
+<strong>Jonas Flatås</strong><br>
+Telefon: +47 968 12 831<br>
+Epost: jonasflataas@gmail.com
+</div>
+
+</div>
+
+</div>
+
+</div>
 </div>
 
 <script>
-const PASSWORD = "Ufokus";
+const PASSWORD="Ufokus";
 
 function login(){
-    let input = document.getElementById("password").value;
-    if(input === PASSWORD){
+    let input=document.getElementById("password").value;
+    if(input===PASSWORD){
         localStorage.setItem("loggedIn","true");
         document.getElementById("loginScreen").style.display="none";
         document.getElementById("mainContent").classList.remove("hidden");
