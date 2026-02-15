@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOK Infoportal</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#f3f4f6;
+    margin:0;
+    padding:20px;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+}
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+.hidden{ display:none; }
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+button{
+    margin-top:10px;
+    padding:10px;
+    width:100%;
+    background:#111827;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+.nav{
+    margin-bottom:20px;
+}
+.nav a{
+    margin-right:10px;
+    font-weight:bold;
+    text-decoration:none;
+}
+.ref{
+    background:#f9fafb;
+    border-left:4px solid #111827;
+    padding:10px;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div id="loginBox" class="card">
+<h2>🔒 Intern infoportal</h2>
+<p>Legg inn passord for tilgang.</p>
+
+<input type="password" id="password" placeholder="Passord">
+<button onclick="checkPassword()">Logg inn</button>
+
+<p id="error" style="color:red;"></p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="content" class="hidden">
+
+<div class="nav">
+<a href="index.html">📘 Første mobilisering</a>
+<a href="kalkulator.html">🧮 Kalkulator</a>
+</div>
+
+<div class="card">
+
+<h1>Første mobilisering og veien videre</h1>
+
+<p>
+Hos oss har vi en <b>godkjent rotasjonsordning</b>.  
+Denne siden gir grunnleggende info for nye ansatte.
+</p>
+
+<h2>1. Rotasjon</h2>
+<p>
+Rotasjon gjelder når du ikke kan ha nattkvarter hjemme og jobber på anlegg.
+</p>
+<div class="ref">LOK §9 A – Definisjon</div>
+
+<h2>2. Før mobilisering</h2>
+<p>
+Arbeidsplan, reise og opphold skal være avklart før oppstart.
+</p>
+<div class="ref">LOK §9 F</div>
+
+<h2>3. Reiser</h2>
+<p>
+Reiser mellom hjemsted og anlegg reguleres av LOK §9.
+</p>
+<div class="ref">LOK §9 E pkt.4</div>
+
+<h2>4. Betalte reiser</h2>
+<p>
+Oppstart, avslutning og ferieperioder er betalingspliktige.
+</p>
+<div class="ref">LOK §9 F</div>
+
+<h2>5. Diett</h2>
+<p>
+Diett følger reiser som omfattes av tariffen.
+</p>
+<div class="ref">LOK §9 K pkt.3</div>
+
+<h2>6. Arbeidstid</h2>
+<p>
+Godkjent rotasjon = ordinær arbeidstid etter planen.
+</p>
+<div class="ref">LOK §9 F</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+const PASSWORD = "Ufokus";
+
+function checkPassword(){
+    let input = document.getElementById("password").value;
+
+    if(input === PASSWORD){
+        localStorage.setItem("loggedIn","true");
+        showContent();
+    } else {
+        document.getElementById("error").innerText="Feil passord";
+    }
+}
+
+function showContent(){
+    document.getElementById("loginBox").style.display="none";
+    document.getElementById("content").classList.remove("hidden");
+}
+
+// auto login if already authenticated
+if(localStorage.getItem("loggedIn")==="true"){
+    showContent();
+}
+
+</script>
+
+</body>
+</html>
