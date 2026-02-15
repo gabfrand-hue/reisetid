@@ -1,1 +1,40 @@
+<script>
+const PASSWORD = "Ufokus";
+
+// kjør når siden er ferdig lastet
+document.addEventListener("DOMContentLoaded", function() {
+
+    // auto login hvis allerede logget inn
+    if(localStorage.getItem("loggedIn") === "true"){
+        showMain();
+    }
+
+    // ENTER-tast fungerer også
+    document.getElementById("password").addEventListener("keyup", function(e){
+        if(e.key === "Enter"){
+            login();
+        }
+    });
+
+});
+
+function showMain(){
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("mainContent").classList.remove("hidden");
+}
+
+function login(){
+
+    let input = document.getElementById("password").value.trim();
+
+    if(input === PASSWORD){
+
+        localStorage.setItem("loggedIn","true");
+        showMain();
+
+    } else {
+        document.getElementById("error").innerText = "Feil passord";
+    }
+}
+</script>
 
