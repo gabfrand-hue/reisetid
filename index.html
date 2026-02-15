@@ -13,17 +13,18 @@ body{
     background:linear-gradient(135deg,#eef2f7,#f8fafc);
 }
 
+/* LAYOUT */
 .container{
     max-width:1000px;
     margin:60px auto;
     padding:0 20px;
 }
-
 .card{
     background:white;
     border-radius:18px;
     padding:50px;
     box-shadow:0 20px 40px rgba(0,0,0,0.08);
+    margin-bottom:30px;
 }
 
 /* NAV */
@@ -40,13 +41,14 @@ body{
 }
 
 h1{margin-top:0;font-size:42px;}
-h2{margin-top:30px;}
+h2{margin-top:35px;}
 
 .ref{
     margin-top:10px;
-    padding:10px;
+    padding:12px;
     background:#f1f5f9;
     border-left:4px solid #111827;
+    font-size:14px;
 }
 
 /* LOGIN */
@@ -57,7 +59,6 @@ input{
     border-radius:10px;
     margin-top:10px;
 }
-
 button{
     width:100%;
     padding:14px;
@@ -76,6 +77,22 @@ button{
     font-size:28px;
     font-weight:700;
     margin-bottom:20px;
+}
+
+/* Tillitsvalgt */
+.tv-box{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:25px;
+}
+.tv-person{
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid #e5e7eb;
+}
+.tv-person:last-child{
+    border-bottom:none;
 }
 </style>
 </head>
@@ -97,7 +114,6 @@ button{
 </div>
 </div>
 
-
 <!-- MAIN CONTENT -->
 <div id="app" class="hidden">
 
@@ -107,54 +123,155 @@ button{
 </div>
 
 <div class="container">
+
+<!-- MOBILISERING -->
 <div class="card">
 
 <h1>Første mobilisering og veien videre</h1>
 
 <p>
-Hos oss har vi en <strong>godkjent rotasjonsordning</strong>.
-Dette betyr at arbeidstid, reiser og friperioder er avtalt etter tariff og arbeidsmiljøloven.
+Hos oss har vi en <strong>godkjent rotasjonsordning</strong>.  
+Det betyr at arbeidstid, reiser og friperioder er avtalt etter tariff og arbeidsmiljøloven.
+Denne informasjonen er laget for at nye ansatte skal forstå hvordan ordningen faktisk praktiseres.
 </p>
 
 <h2>1. Rotasjon</h2>
 <p>
 Rotasjon brukes når du ikke kan ha nattkvarter hjemme og jobber på anlegg utenbys.
+Du jobber en planlagt periode og har deretter friperiode.
 </p>
+
 <p><strong>Eksempel:</strong><br>
 Du bor i Oslo og jobber på Stord. Du bor borte i arbeidsperioden og reiser hjem i friperioden.
+Dette regnes som arbeid utenfor bedriften.
 </p>
+
 <div class="ref">Tariff: LOK §9 A</div>
 
 <h2>2. Før mobilisering</h2>
 <p>
-Arbeidsplan, rotasjon og reiseopplegg skal være avklart før oppstart.
+Før første mobilisering skal arbeidsplan, rotasjon, innkvartering og reiseopplegg være avklart.
+Rotasjonsordningen hos oss er godkjent, og arbeidstiden følger denne planen.
 </p>
+
+<p><strong>Eksempel:</strong><br>
+14/21 rotasjon betyr 14 dager arbeid etter plan og 21 dager fri.
+</p>
+
 <div class="ref">Tariff: LOK §9 F</div>
 
 <h2>3. Reiser</h2>
 <p>
 Reiser mellom hjemsted og anlegg følger tariffens regler.
+Reisetid og kostnader skal føres og dokumenteres riktig.
 </p>
+
+<p><strong>Eksempel:</strong><br>
+Oslo → fly → transport til anlegg føres som reise.
+</p>
+
 <div class="ref">Tariff: LOK §9 E pkt.4</div>
 
-</div>
+<h2>4. Betalbare reiser</h2>
+<p>
+I rotasjon er det ikke nødvendigvis alle reiser som gir rett på reisetid.
+Tariffen angir oppstart, avslutning og ferieperioder som betalingspliktige.
+</p>
+
+<p><strong>Praksis:</strong><br>
+Det kan være flere reiser i året enn de som gir tarifffestet betaling — dette er normalt i rotasjonsarbeid.
+</p>
+
+<div class="ref">Tariff: LOK §9 F</div>
+
+<h2>5. Diett</h2>
+<p>
+Diett er kostgodtgjørelse under reise når du ikke kan spise hjemme.
+Satsen avhenger av hvor lenge reisen varer.
+</p>
+
+<div class="ref">Tariff: LOK §9 K pkt.3</div>
+
+<h2>6. Arbeidstid</h2>
+<p>
+Godkjent rotasjon betyr at arbeidstiden i planen er ordinær arbeidstid.
+Friperioden er faktisk fritid.
+</p>
+
+<div class="ref">Tariff: LOK §9 F</div>
+
+<h2>7. Viktig å huske</h2>
+<p>
+• Før reisetid korrekt<br>
+• Ta vare på billetter og kvitteringer<br>
+• Følg rotasjonsplanen<br>
+• Spør tillitsvalgt tidlig ved spørsmål
+</p>
+
 </div>
 
+<!-- TILLITSVALGTE -->
+<div class="card">
+
+<h1>🤝 Tillitsvalgte</h1>
+
+<p>
+Terskelen for å kontakte tillitsvalgte er lav.  
+Tillitsvalgte er der for å hjelpe ansatte med spørsmål om arbeidstid, rotasjon, lønn, reiser, diett og arbeidsmiljø.
+Er du usikker på noe — spør heller en gang for mye enn en gang for lite.
+</p>
+
+<div class="tv-box">
+
+<div class="tv-person">
+<strong>Leder – Stian Berg</strong><br>
+Telefon: +47 957 45 404<br>
+Epost: stianberg96@outlook.com
+</div>
+
+<div class="tv-person">
+<strong>Nestleder – Gabriel Attermann Frandsen</strong><br>
+Telefon: +47 400 54 274<br>
+Epost: gab.frand@gmail.com
+</div>
+
+<div class="tv-person">
+<strong>Gaute Hvammen</strong><br>
+Telefon: +47 951 23 094<br>
+Epost: gaute@industrifokus.no
+</div>
+
+<div class="tv-person">
+<strong>Håkon Wedding</strong><br>
+Telefon: +47 459 18 601<br>
+Epost: haakon@industrifokus.no
+</div>
+
+<div class="tv-person">
+<strong>Jonas Flatås</strong><br>
+Telefon: +47 968 12 831<br>
+Epost: jonasflataas@gmail.com
+</div>
+
+</div>
+
+</div>
+
+</div>
 </div>
 
 <script>
+
 /* ===== SIMPLE WORKING LOGIN ===== */
 
 const PASSWORD = "Ufokus";
 
-// grab elements
 const loginBox = document.getElementById("login");
 const app = document.getElementById("app");
 const btn = document.getElementById("loginBtn");
 const input = document.getElementById("pw");
 const msg = document.getElementById("msg");
 
-// login function
 function doLogin(){
     if(input.value.trim() === PASSWORD){
         loginBox.style.display = "none";
@@ -164,15 +281,14 @@ function doLogin(){
     }
 }
 
-// click login
 btn.addEventListener("click", doLogin);
 
-// ENTER key
 input.addEventListener("keypress", function(e){
     if(e.key === "Enter"){
         doLogin();
     }
 });
+
 </script>
 
 </body>
