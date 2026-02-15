@@ -8,10 +8,11 @@
 <style>
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:linear-gradient(135deg,#eef2f7,#f8fafc);
 }
 
+/* NAV */
 .nav{
     position:sticky;
     top:0;
@@ -20,7 +21,6 @@ body{
     box-shadow:0 2px 8px rgba(0,0,0,0.06);
     z-index:100;
 }
-
 .nav a{
     text-decoration:none;
     font-weight:600;
@@ -28,30 +28,24 @@ body{
     color:#111827;
 }
 
+/* LAYOUT */
 .container{
     max-width:1000px;
     margin:60px auto;
     padding:0 20px;
 }
-
 .card{
     background:white;
     border-radius:18px;
     padding:50px;
     box-shadow:
-        0 20px 40px rgba(0,0,0,0.08),
-        0 4px 12px rgba(0,0,0,0.04);
+      0 20px 40px rgba(0,0,0,0.08),
+      0 4px 12px rgba(0,0,0,0.04);
     margin-bottom:30px;
 }
 
-h1{
-    margin-top:0;
-    font-size:44px;
-}
-
-h2{
-    margin-top:35px;
-}
+h1{margin-top:0;font-size:44px;}
+h2{margin-top:35px;}
 
 .ref{
     margin-top:10px;
@@ -61,70 +55,65 @@ h2{
     font-size:14px;
 }
 
+/* LOGIN */
 input{
     width:100%;
     padding:14px;
     border-radius:10px;
     border:1px solid #d1d5db;
     margin-top:10px;
-    font-size:16px;
 }
-
 button{
     margin-top:15px;
     padding:14px;
     width:100%;
-    border-radius:10px;
     border:none;
+    border-radius:10px;
     background:#111827;
     color:white;
     font-weight:600;
     cursor:pointer;
 }
-
-.hidden{ display:none; }
-.center{ text-align:center; }
-
+.hidden{display:none;}
+.center{text-align:center;}
 .logo{
     font-size:28px;
     font-weight:700;
     margin-bottom:25px;
 }
 
-/* Tillitsvalgt section */
+/* Tillitsvalgt */
 .tv-box{
     background:#f8fafc;
     border:1px solid #e2e8f0;
     border-radius:14px;
     padding:25px;
-    margin-top:20px;
 }
-
 .tv-person{
-    margin-bottom:20px;
-    padding-bottom:15px;
+    margin-bottom:18px;
+    padding-bottom:14px;
     border-bottom:1px solid #e5e7eb;
 }
-
 .tv-person:last-child{
     border-bottom:none;
-    margin-bottom:0;
 }
 </style>
 </head>
 
 <body>
 
+<!-- LOGIN -->
 <div id="loginScreen" class="container">
 <div class="card center">
 <div class="logo">Industri Ufokus</div>
-<h2>🔒 Intern Infoportal</h2>
+<h2>🔒 Intern infoportal</h2>
 <input type="password" id="password" placeholder="Passord">
 <button onclick="login()">Logg inn</button>
 <p id="error" style="color:red;"></p>
 </div>
 </div>
 
+<!-- CONTENT -->
 <div id="mainContent" class="hidden">
 
 <div class="nav">
@@ -134,54 +123,95 @@ button{
 
 <div class="container">
 
+<!-- MOBILISERING -->
 <div class="card">
 
 <h1>Første mobilisering og veien videre</h1>
 
 <p>
-Hos oss har vi en <strong>godkjent rotasjonsordning</strong>. 
-Dette betyr at arbeidstidsplanen er avtalt og godkjent i henhold til tariff og arbeidsmiljøloven.
+Hos oss har vi en <strong>godkjent rotasjonsordning</strong>.  
+Det betyr at arbeidstid, reiser og friperioder allerede er avtalt etter tariff og arbeidsmiljøloven.
+Denne siden forklarer hvordan dette praktiseres i hverdagen, slik at nye ansatte vet hva som gjelder fra start.
 </p>
 
 <h2>1. Rotasjon</h2>
-<p>Rotasjon gjelder når du ikke kan ha nattkvarter hjemme og jobber på anlegg.</p>
+<p>
+Rotasjon brukes når du ikke kan ha nattkvarter hjemme og jobber på anlegg eller prosjekt utenbys.
+Du arbeider i en periode og har deretter planlagt friperiode.
+</p>
+<p><strong>Eksempel:</strong><br>
+Du bor i Oslo og jobber på Stord. Du bor borte i arbeidsperioden og reiser hjem i friperioden.
+Dette regnes som arbeid utenfor bedriften.
+</p>
 <div class="ref">Tariff: LOK §9 A</div>
 
 <h2>2. Før mobilisering</h2>
-<p>Arbeidsplan, reise og opphold skal være avklart før oppstart.</p>
+<p>
+Før første mobilisering skal arbeidsplan, rotasjon, innkvartering og reiseopplegg være avklart.
+Godkjent rotasjon betyr at arbeidstid og friperioder er formelt godkjent.
+</p>
+<p><strong>Eksempel:</strong><br>
+14/21 rotasjon = 14 dager arbeid etter plan og 21 dager fri.
+</p>
 <div class="ref">Tariff: LOK §9 F</div>
 
 <h2>3. Reiser</h2>
-<p>Reiser mellom hjemsted og anlegg reguleres av LOK §9.</p>
+<p>
+Reiser mellom hjemsted og anlegg følger egne regler i tariffen.
+Reiseutgifter dekkes og reisetid skal føres korrekt.
+</p>
+<p><strong>Eksempel:</strong><br>
+Oslo → fly → transport til anlegg føres som reise.
+</p>
 <div class="ref">Tariff: LOK §9 E pkt.4</div>
 
 <h2>4. Betalbare reiser</h2>
-<p>Oppstart, avslutning og ferieperioder er betalingspliktige.</p>
+<p>
+Ikke alle reiser gir rett på reisetid. Tariffen angir oppstart, avslutning og ferieperioder som betalingspliktige.
+</p>
+<p><strong>Praksis:</strong><br>
+Du kan ha flere reiser i året enn det som gir tariffmessig reisetid — dette er normalt.
+</p>
 <div class="ref">Tariff: LOK §9 F</div>
 
 <h2>5. Diett</h2>
-<p>Diett følger reiser som omfattes av tariffen.</p>
+<p>
+Diett er kostgodtgjørelse under reise når du ikke kan spise hjemme.
+Satsene avhenger av reisetid og overnatting.
+</p>
+<p><strong>Eksempel:</strong><br>
+Reise over 6 timer gir diett etter tariffens satser.
+</p>
 <div class="ref">Tariff: LOK §9 K pkt.3</div>
 
 <h2>6. Arbeidstid</h2>
-<p>Godkjent rotasjon = ordinær arbeidstid etter plan.</p>
+<p>
+Godkjent rotasjon betyr at arbeidstiden i planen er ordinær arbeidstid.
+Friperioden er reell fritid.
+</p>
+<p><strong>Eksempel:</strong><br>
+Blir du syk en planlagt arbeidsdag beregnes sykepenger etter planlagte timer.
+</p>
 <div class="ref">Tariff: LOK §9 F</div>
+
+<h2>7. Viktig å huske</h2>
+<p>
+• Før timer og reisetid nøyaktig<br>
+• Ta vare på billetter og kvitteringer<br>
+• Følg rotasjonsplanen<br>
+• Spør tillitsvalgt tidlig ved tvil
+</p>
 
 </div>
 
-<!-- TILLITSVALGT SECTION -->
+<!-- TILLITSVALGT -->
 <div class="card">
 
 <h1>🤝 Tillitsvalgt</h1>
 
 <p>
 Terskelen for å kontakte tillitsvalgte skal være lav.  
-Tillitsvalgte er her for å hjelpe deg med spørsmål om arbeidstid, rotasjon, lønn, reise, diett, arbeidsmiljø og generelle utfordringer på jobb.
-</p>
-
-<p>
-De tillitsvalgte representerer de ansatte og jobber for at tariffavtale, avtaler og praksis følges riktig.  
-Er du usikker på noe — spør heller en gang for mye enn en gang for lite.
+De tillitsvalgte hjelper med spørsmål om arbeidstid, rotasjon, lønn, reise, diett og arbeidsmiljø.
 </p>
 
 <div class="tv-box">
@@ -194,54 +224,4 @@ Epost: stianberg96@outlook.com
 
 <div class="tv-person">
 <strong>Nestleder – Gabriel Attermann Frandsen</strong><br>
-Telefon: +47 400 54 274<br>
-Epost: gab.frand@gmail.com
-</div>
-
-<div class="tv-person">
-<strong>Gaute Hvammen</strong><br>
-Telefon: +47 951 23 094<br>
-Epost: gaute@industrifokus.no
-</div>
-
-<div class="tv-person">
-<strong>Håkon Wedding</strong><br>
-Telefon: +47 459 18 601<br>
-Epost: haakon@industrifokus.no
-</div>
-
-<div class="tv-person">
-<strong>Jonas Flatås</strong><br>
-Telefon: +47 968 12 831<br>
-Epost: jonasflataas@gmail.com
-</div>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-<script>
-const PASSWORD="Ufokus";
-
-function login(){
-    let input=document.getElementById("password").value;
-    if(input===PASSWORD){
-        localStorage.setItem("loggedIn","true");
-        document.getElementById("loginScreen").style.display="none";
-        document.getElementById("mainContent").classList.remove("hidden");
-    } else {
-        document.getElementById("error").innerText="Feil passord";
-    }
-}
-
-if(localStorage.getItem("loggedIn")==="true"){
-    document.getElementById("loginScreen").style.display="none";
-    document.getElementById("mainContent").classList.remove("hidden");
-}
-</script>
-
-</body>
-</html>
+Telefon: +4
