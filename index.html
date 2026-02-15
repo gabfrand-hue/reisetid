@@ -1,55 +1,169 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Industri Ufokus – Infoportal</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#eef2f7,#f8fafc);
+}
+
+/* NAV */
+.nav{
+    position:sticky;
+    top:0;
+    background:white;
+    padding:18px 28px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    z-index:100;
+}
+.nav a{
+    text-decoration:none;
+    font-weight:600;
+    margin-right:18px;
+    color:#111827;
+}
+
+/* LAYOUT */
+.container{
+    max-width:1000px;
+    margin:60px auto;
+    padding:0 20px;
+}
+.card{
+    background:white;
+    border-radius:18px;
+    padding:50px;
+    box-shadow:
+      0 20px 40px rgba(0,0,0,0.08),
+      0 4px 12px rgba(0,0,0,0.04);
+    margin-bottom:30px;
+}
+
+h1{margin-top:0;font-size:44px;}
+h2{margin-top:35px;}
+
+.ref{
+    margin-top:10px;
+    padding:12px;
+    background:#f1f5f9;
+    border-left:4px solid #111827;
+    font-size:14px;
+}
+
+/* LOGIN */
+input{
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #d1d5db;
+    margin-top:10px;
+    font-size:16px;
+}
+button{
+    margin-top:15px;
+    padding:14px;
+    width:100%;
+    border:none;
+    border-radius:10px;
+    background:#111827;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.center{text-align:center;}
+.logo{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+/* hidden content */
+.hidden{
+    display:none;
+}
+
+/* Tillitsvalgt */
+.tv-box{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:25px;
+}
+.tv-person{
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid #e5e7eb;
+}
+.tv-person:last-child{
+    border-bottom:none;
+}
+</style>
+</head>
+
 <body>
 
 <!-- LOGIN SCREEN -->
-<div id="loginScreen">
-    HER ligger login-boksen din
+<div id="loginScreen" class="container">
+<div class="card center">
+
+<div class="logo">Industri Ufokus</div>
+<h2>🔒 Intern infoportal</h2>
+
+<input type="password" id="password" placeholder="Passord">
+<button onclick="login()">Logg inn</button>
+
+<p id="error" style="color:red;"></p>
+
+</div>
 </div>
 
 
-<!-- ALT INNHOLD SOM SKAL VISes ETTER LOGIN -->
+<!-- MAIN CONTENT -->
 <div id="mainContent" class="hidden">
 
-    NAVIGASJON
-    INFO SIDE
-    TILLITSVALGT
+<div class="nav">
+<a href="index.html">📘 Første mobilisering</a>
+<a href="kalkulator.html">🧮 Kalkulator</a>
+</div>
 
+<div class="container">
 
-<script>
-const PASSWORD = "Ufokus";
+<div class="card">
 
-// kjør når siden er ferdig lastet
-document.addEventListener("DOMContentLoaded", function() {
+<h1>Første mobilisering og veien videre</h1>
 
-    // auto login hvis allerede logget inn
-    if(localStorage.getItem("loggedIn") === "true"){
-        showMain();
-    }
+<p>
+Hos oss har vi en <strong>godkjent rotasjonsordning</strong>.
+Dette betyr at arbeidstid, reiser og friperioder er avtalt etter tariff og arbeidsmiljøloven.
+</p>
 
-    // ENTER-tast fungerer også
-    document.getElementById("password").addEventListener("keyup", function(e){
-        if(e.key === "Enter"){
-            login();
-        }
-    });
+<h2>1. Rotasjon</h2>
+<p>
+Rotasjon brukes når du ikke kan ha nattkvarter hjemme og jobber på anlegg utenbys.
+</p>
+<p><strong>Eksempel:</strong><br>
+Du bor i Oslo og jobber på Stord. Du bor borte i arbeidsperioden og reiser hjem i friperioden.
+</p>
+<div class="ref">Tariff: LOK §9 A</div>
 
-});
+<h2>2. Før mobilisering</h2>
+<p>
+Arbeidsplan, rotasjon og reiseopplegg skal være avklart før oppstart.
+</p>
+<div class="ref">Tariff: LOK §9 F</div>
 
-function showMain(){
-    document.getElementById("loginScreen").style.display = "none";
-    document.getElementById("mainContent").classList.remove("hidden");
-}
+<h2>3. Reiser</h2>
+<p>
+Reiser mellom hjemsted og anlegg følger tariffens regler.
+</p>
+<div class="ref">Tariff: LOK §9 E pkt.4</div>
 
-function login(){
-
-    let input = document.getElementById("password").value.trim();
-
-    if(input === PASSWORD){
-
-        localStorage.setItem("loggedIn","true");
-        showMain();
-
-    } else {
-        document.getElementById("error").innerText = "Feil passord";
-    }
-}
-</script>
+<h2>4. Betalbare reiser</h2>
+<p>
+Opps
