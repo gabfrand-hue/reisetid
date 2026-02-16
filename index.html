@@ -3,292 +3,313 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Industri Ufokus – Infoportal</title>
+<title>Ansattportal</title>
 
 <style>
 body{
     margin:0;
-    font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#eef2f7,#f8fafc);
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+    color:#222;
+}
+
+/* HEADER */
+header{
+    background:#0d2b45;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+header h1{margin:0;}
+#clock{font-size:14px;margin-top:6px;opacity:0.9;}
+
+/* ALERT */
+.alert{
+    background:#ffefc4;
+    padding:10px;
+    text-align:center;
+    font-weight:bold;
 }
 
 /* LAYOUT */
 .container{
-    max-width:1000px;
-    margin:60px auto;
-    padding:0 20px;
+    display:flex;
+    gap:20px;
+    padding:20px;
 }
-.card{
+
+/* SIDEBAR */
+.sidebar{
+    width:280px;
     background:white;
-    border-radius:18px;
-    padding:50px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.08);
-    margin-bottom:30px;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    height:fit-content;
+}
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+.sidebar li{
+    padding:8px 0;
+    border-bottom:1px solid #eee;
 }
 
-/* NAV */
-.nav{
-    background:white;
-    padding:18px 28px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+/* FAVORITTER */
+.quick-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
 }
-.nav a{
-    text-decoration:none;
-    font-weight:bold;
-    margin-right:15px;
-    color:#111827;
-}
-
-h1{margin-top:0;font-size:42px;}
-h2{margin-top:35px;}
-
-.ref{
-    margin-top:10px;
-    padding:12px;
-    background:#f1f5f9;
-    border-left:4px solid #111827;
-    font-size:14px;
-}
-
-/* LOGIN */
-input{
-    width:100%;
-    padding:14px;
-    border:1px solid #ccc;
-    border-radius:10px;
-    margin-top:10px;
-}
-button{
-    width:100%;
-    padding:14px;
-    margin-top:12px;
+.quick-buttons button{
     border:none;
-    border-radius:10px;
-    background:#111827;
+    background:#0d2b45;
     color:white;
-    font-weight:bold;
+    padding:8px 12px;
+    border-radius:8px;
     cursor:pointer;
 }
 
-.center{text-align:center;}
-.hidden{display:none;}
-.logo{
-    font-size:28px;
-    font-weight:700;
-    margin-bottom:20px;
+/* MAIN GRID */
+.main{
+    flex:1;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
 }
 
-/* Tillitsvalgt */
-.tv-box{
-    background:#f8fafc;
-    border:1px solid #e2e8f0;
-    border-radius:14px;
+/* CARD */
+.card{
+    background:white;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    overflow:hidden;
+}
+
+/* CLICKABLE HEADER */
+.card-header{
+    padding:15px 20px;
+    cursor:pointer;
+    background:#ffffff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-weight:bold;
+    color:#0d2b45;
+    border-bottom:1px solid #eee;
+}
+
+.card-header:hover{
+    background:#f7f9fb;
+}
+
+/* COLLAPSIBLE CONTENT */
+.card-content{
+    padding:20px;
+    display:none;
+}
+
+.card.open .card-content{
+    display:block;
+}
+
+/* STATUS BOXES */
+.info-box{
+    padding:10px;
+    margin-top:8px;
+    border-left:4px solid;
+    border-radius:4px;
+    font-size:14px;
+}
+.info-blue{background:#e9f3ff;border-color:#1976d2;}
+.info-green{background:#eaf7ea;border-color:#2e7d32;}
+.info-yellow{background:#fff8e1;border-color:#f9a825;}
+.info-red{background:#fdecea;border-color:#d32f2f;}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:15px;
+    font-size:13px;
+    color:#666;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    left:0;top:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.45);
+}
+.modal-content{
+    background:white;
+    max-width:600px;
+    margin:8% auto;
     padding:25px;
+    border-radius:12px;
 }
-.tv-person{
-    margin-bottom:18px;
-    padding-bottom:14px;
-    border-bottom:1px solid #e5e7eb;
+.close-btn{
+    margin-top:12px;
+    background:#0d2b45;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:8px;
+    cursor:pointer;
 }
-.tv-person:last-child{
-    border-bottom:none;
+
+/* MOBILE */
+@media(max-width:900px){
+    .container{flex-direction:column;}
+    .sidebar{width:auto;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div id="login" class="container">
-<div class="card center">
+<header>
+<h1>Ansattportal</h1>
+<div id="clock"></div>
+</header>
 
-<div class="logo">Industri Ufokus</div>
-<h2>🔒 Intern infoportal</h2>
-
-<input type="password" id="pw" placeholder="Passord">
-<button id="loginBtn">Logg inn</button>
-
-<p id="msg" style="color:red;"></p>
-
-</div>
-</div>
-
-<!-- MAIN CONTENT -->
-<div id="app" class="hidden">
-
-<div class="nav">
-<a href="index.html">📘 Første mobilisering</a>
-<a href="kalkulator.html">🧮 Kalkulator</a>
+<div class="alert">
+📢 Husk å sende reiseregning innen siste arbeidsdag i måneden.
 </div>
 
 <div class="container">
 
-<!-- MOBILISERING -->
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<h2>📌 Hurtigmeny</h2>
+<ul>
+<li>🧭 Kom i gang</li>
+<li>📅 Rotasjon & arbeidstid</li>
+<li>💰 Lønn & reiseregning</li>
+<li>🧾 Overtid & reisetid</li>
+<li>👷 HMS & varsling</li>
+<li>👥 Tillitsvalgte</li>
+<li>💡 Nyttig å vite</li>
+</ul>
+
+<h2>⭐ Favoritter</h2>
+<div class="quick-buttons">
+<button>Timeregistrering</button>
+<button>Turnus</button>
+<button>Ferie</button>
+<button>Avvik</button>
+</div>
+</aside>
+
+<!-- MAIN -->
+<section class="main">
+
+<!-- CARD -->
+<div class="card open">
+<div class="card-header">🔵 Hva skjer nå? <span>▼</span></div>
+<div class="card-content">
+<div class="info-box info-blue">
+• Ny mobiliseringsplan publisert<br>
+• Neste medlemsmøte: Fredag kl 14:00
+</div>
+<div class="info-box info-yellow">
+⚠️ Oppdaterte rutiner for reiseregning — les før innsending.
+</div>
+</div>
+</div>
+
 <div class="card">
-
-<h1>Første mobilisering og veien videre</h1>
-
-<p>
-Hos oss har vi en <strong>godkjent rotasjonsordning</strong>.  
-Det betyr at arbeidstid, reiser og friperioder er avtalt etter tariff og arbeidsmiljøloven.
-Denne informasjonen er laget for at nye ansatte skal forstå hvordan ordningen faktisk praktiseres.
-</p>
-
-<h2>1. Rotasjon</h2>
-<p>
-Rotasjon brukes når du ikke kan ha nattkvarter hjemme og jobber på anlegg utenbys.
-Du jobber en planlagt periode og har deretter friperiode.
-</p>
-
-<p><strong>Eksempel:</strong><br>
-Du bor i Oslo og jobber på Stord. Du bor borte i arbeidsperioden og reiser hjem i friperioden.
-Dette regnes som arbeid utenfor bedriften.
-</p>
-
-<div class="ref">Tariff: LOK §9 A</div>
-
-<h2>2. Før mobilisering</h2>
-<p>
-Før første mobilisering skal arbeidsplan, rotasjon, innkvartering og reiseopplegg være avklart.
-Rotasjonsordningen hos oss er godkjent, og arbeidstiden følger denne planen.
-</p>
-
-<p><strong>Eksempel:</strong><br>
-14/21 rotasjon betyr 14 dager arbeid etter plan og 21 dager fri.
-</p>
-
-<div class="ref">Tariff: LOK §9 F</div>
-
-<h2>3. Reiser</h2>
-<p>
-Reiser mellom hjemsted og anlegg følger tariffens regler.
-Reisetid og kostnader skal føres og dokumenteres riktig.
-</p>
-
-<p><strong>Eksempel:</strong><br>
-Oslo → fly → transport til anlegg føres som reise.
-</p>
-
-<div class="ref">Tariff: LOK §9 E pkt.4</div>
-
-<h2>4. Betalbare reiser</h2>
-<p>
-I rotasjon er det ikke nødvendigvis alle reiser som gir rett på reisetid.
-Tariffen angir oppstart, avslutning og ferieperioder som betalingspliktige.
-</p>
-
-<p><strong>Praksis:</strong><br>
-Det kan være flere reiser i året enn de som gir tarifffestet betaling — dette er normalt i rotasjonsarbeid.
-</p>
-
-<div class="ref">Tariff: LOK §9 F</div>
-
-<h2>5. Diett</h2>
-<p>
-Diett er kostgodtgjørelse under reise når du ikke kan spise hjemme.
-Satsen avhenger av hvor lenge reisen varer.
-</p>
-
-<div class="ref">Tariff: LOK §9 K pkt.3</div>
-
-<h2>6. Arbeidstid</h2>
-<p>
-Godkjent rotasjon betyr at arbeidstiden i planen er ordinær arbeidstid.
-Friperioden er faktisk fritid.
-</p>
-
-<div class="ref">Tariff: LOK §9 F</div>
-
-<h2>7. Viktig å huske</h2>
-<p>
-• Før reisetid korrekt<br>
-• Ta vare på billetter og kvitteringer<br>
-• Følg rotasjonsplanen<br>
-• Spør tillitsvalgt tidlig ved spørsmål
-</p>
-
+<div class="card-header">👥 Tillitsvalgte <span>▼</span></div>
+<div class="card-content">
+<p>Tillitsvalgte hjelper med arbeidstid, lønn, diett og arbeidsmiljø.</p>
+<div class="info-box info-green">
+✔ Tillitsvalgt: <strong>Gabriel Attermann Frandsen</strong><br>
+Tidlig dialog løser flest saker.
+</div>
+</div>
 </div>
 
-<!-- TILLITSVALGTE -->
 <div class="card">
-
-<h1>🤝 Tillitsvalgte</h1>
-
-<p>
-Terskelen for å kontakte tillitsvalgte er lav.  
-Tillitsvalgte er der for å hjelpe ansatte med spørsmål om arbeidstid, rotasjon, lønn, reiser, diett og arbeidsmiljø.
-Er du usikker på noe — spør heller en gang for mye enn en gang for lite.
-</p>
-
-<div class="tv-box">
-
-<div class="tv-person">
-<strong>Leder – Stian Berg</strong><br>
-Telefon: +47 957 45 404<br>
-Epost: stianberg96@outlook.com
+<div class="card-header">🧭 Kom i gang <span>▼</span></div>
+<div class="card-content">
+<ul>
+<li>Kontaktpersoner</li>
+<li>Melde fravær og sykdom</li>
+<li>Rotasjon og mobilisering</li>
+<li>Lønnsslipp & reiseregning</li>
+</ul>
+</div>
 </div>
 
-<div class="tv-person">
-<strong>Nestleder – Gabriel Attermann Frandsen</strong><br>
-Telefon: +47 400 54 274<br>
-Epost: gab.frand@gmail.com
+<div class="card">
+<div class="card-header">📑 Rettigheter & avtaler <span>▼</span></div>
+<div class="card-content">
+<ul>
+<li>LOK / tariff forklart enkelt</li>
+<li>Diett og utlegg</li>
+<li>Overtid og reisetid</li>
+</ul>
+<div class="info-box info-red">
+❗ Kritiske HMS-avvik meldes umiddelbart.
+</div>
+</div>
 </div>
 
-<div class="tv-person">
-<strong>Gaute Hvammen</strong><br>
-Telefon: +47 951 23 094<br>
-Epost: gaute@industrifokus.no
+<div class="card">
+<div class="card-header">💡 Nyttig å vite <span>▼</span></div>
+<div class="card-content">
+<ul>
+<li>Vanlige feil på reiseregning</li>
+<li>Lønnsberegning i rotasjon</li>
+<li>Tips til nyansatte</li>
+</ul>
+</div>
 </div>
 
-<div class="tv-person">
-<strong>Håkon Wedding</strong><br>
-Telefon: +47 459 18 601<br>
-Epost: haakon@industrifokus.no
+</section>
 </div>
 
-<div class="tv-person">
-<strong>Jonas Flatås</strong><br>
-Telefon: +47 968 12 831<br>
-Epost: jonasflataas@gmail.com
-</div>
+<footer>
+Intern informasjonsportal — oversikt, samarbeid og enkel tilgang.
+</footer>
 
-</div>
-
-</div>
-
+<!-- WELCOME -->
+<div id="welcomeModal" class="modal">
+<div class="modal-content">
+<h2>Velkommen 👋</h2>
+<p>Start med «Kom i gang» i hurtigmenyen.</p>
+<button class="close-btn" onclick="closeModal()">Lukk</button>
 </div>
 </div>
 
 <script>
-
-/* ===== SIMPLE WORKING LOGIN ===== */
-
-const PASSWORD = "Ufokus";
-
-const loginBox = document.getElementById("login");
-const app = document.getElementById("app");
-const btn = document.getElementById("loginBtn");
-const input = document.getElementById("pw");
-const msg = document.getElementById("msg");
-
-function doLogin(){
-    if(input.value.trim() === PASSWORD){
-        loginBox.style.display = "none";
-        app.classList.remove("hidden");
-    }else{
-        msg.textContent = "Feil passord";
-    }
+/* CLOCK */
+function updateClock(){
+  document.getElementById("clock").innerText =
+    new Date().toLocaleString("no-NO");
 }
+setInterval(updateClock,1000);
+updateClock();
 
-btn.addEventListener("click", doLogin);
-
-input.addEventListener("keypress", function(e){
-    if(e.key === "Enter"){
-        doLogin();
-    }
+/* COLLAPSIBLE CARDS */
+document.querySelectorAll(".card-header").forEach(header=>{
+  header.addEventListener("click",()=>{
+    header.parentElement.classList.toggle("open");
+  });
 });
 
+/* WELCOME */
+function closeModal(){
+  document.getElementById("welcomeModal").style.display="none";
+  localStorage.setItem("welcomeShown","yes");
+}
+window.onload=function(){
+  if(!localStorage.getItem("welcomeShown")){
+    document.getElementById("welcomeModal").style.display="block";
+  }
+}
 </script>
 
 </body>
