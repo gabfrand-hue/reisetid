@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verktøy</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+}
+
+/* CENTER LOGIN */
+.login-box{
+    max-width:400px;
+    margin:120px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    margin-top:12px;
+    width:100%;
+    background:#0d2b45;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#16466f;
+}
+
+#error{
+    color:red;
+    margin-top:10px;
+    font-size:14px;
+}
+
+/* HIDDEN CONTENT */
+#toolsContent{
+    display:none;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginBox" class="login-box">
+<h2>🔒 Verktøy</h2>
+<p>Skriv inn passord for tilgang</p>
+
+<input type="password" id="passwordInput" placeholder="Passord">
+<button onclick="checkPassword()">Logg inn</button>
+
+<div id="error"></div>
+</div>
+
+<!-- TOOL PAGE -->
+<div id="toolsContent">
+
+<div class="card">
+<h3>🧮 Kalkulator</h3>
+<p>Her kan du legge inn verktøy, kalkulatorer eller interne hjelpemidler.</p>
+</div>
+
+<div class="card">
+<h3>📊 Andre verktøy</h3>
+<ul>
+<li>Lønnsberegning</li>
+<li>Reisetid kalkulator</li>
+<li>Overtid regner</li>
+</ul>
+</div>
+
+</div>
+
+<script>
+const PASSWORD = "2026";
+
+function checkPassword(){
+    const input = document.getElementById("passwordInput").value;
+
+    if(input === PASSWORD){
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("toolsContent").style.display = "block";
+        sessionStorage.setItem("toolsAccess","granted");
+    }else{
+        document.getElementById("error").innerText = "Feil passord";
+    }
+}
+
+/* holder siden åpen i samme session */
+window.onload = function(){
+    if(sessionStorage.getItem("toolsAccess")==="granted"){
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("toolsContent").style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
