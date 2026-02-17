@@ -6,7 +6,6 @@
 <title>Industri Ufokus – Infoportal</title>
 
 <style>
-
 body{
     margin:0;
     font-family:Arial,sans-serif;
@@ -82,12 +81,9 @@ button{
     font-weight:600;
     color:#111827;
     margin-bottom:8px;
-    white-space:nowrap;
 }
 
-.menu-btn:hover{
-    background:#f1f5f9;
-}
+.menu-btn:hover{background:#f1f5f9;}
 
 .menu-btn.active{
     background:#0d2b45;
@@ -105,11 +101,22 @@ button{
     border-radius:12px;
     padding:30px;
     box-shadow:0 4px 18px rgba(0,0,0,0.06);
+    min-height:400px;
 }
 
-.content p{
-    font-size:17px;
-    line-height:1.6;
+/* LOADING */
+.loading{
+    color:#6b7280;
+    font-size:16px;
+}
+
+/* ERROR BOX */
+.error-box{
+    background:#fee2e2;
+    border-left:4px solid #dc2626;
+    padding:15px;
+    border-radius:6px;
+    color:#7f1d1d;
 }
 
 /* MOBILE */
@@ -121,7 +128,6 @@ button{
         border-bottom:1px solid #e5e7eb;
     }
 }
-
 </style>
 </head>
 
@@ -130,6 +136,7 @@ button{
 <!-- LOGIN -->
 <div id="login" class="login-wrap">
 <div class="card center">
+
 <h2>🔒 Industri Ufokus</h2>
 <p>Intern infoportal</p>
 
@@ -137,13 +144,14 @@ button{
 <button onclick="doLogin()">Logg inn</button>
 
 <p id="msg" style="color:red;"></p>
+
 </div>
 </div>
 
 <!-- APP -->
 <div id="app" class="hidden app">
 
-<!-- SIDEBAR -->
+<!-- SIDEMENY -->
 <div class="sidebar">
 <h2>📌 Meny</h2>
 
@@ -156,7 +164,7 @@ button{
 <!-- CONTENT -->
 <div class="content">
 <div class="content-wrapper" id="pageContent">
-Laster...
+<div class="loading">Laster...</div>
 </div>
 </div>
 
@@ -169,6 +177,7 @@ const PASSWORD="Ufokus";
 /* LOGIN */
 function doLogin(){
     const pw=document.getElementById("pw").value.trim();
+
     if(pw===PASSWORD){
         document.getElementById("login").style.display="none";
         document.getElementById("app").classList.remove("hidden");
@@ -178,13 +187,31 @@ function doLogin(){
     }
 }
 
-/* LOAD PAGES */
+/* SAFE PAGE LOADER */
 function loadPage(page){
+
+    const container=document.getElementById("pageContent");
+
+    container.innerHTML=`<div class="loading">Laster side...</div>`;
+
     fetch(page)
-        .then(r=>r.text())
-        .then(html=>{
-            document.getElementById("pageContent").innerHTML=html;
-        });
+    .then(response=>{
+        if(!response.ok){
+            throw new Error("missing");
+        }
+        return response.text();
+    })
+    .then(html=>{
+        container.innerHTML=html;
+    })
+    .catch(()=>{
+        container.innerHTML=`
+        <div class="error-box">
+        ❗ Kunne ikke laste siden:<br><br>
+        <strong>${page}</strong><br><br>
+        Sjekk at filen finnes i samme mappe.
+        </div>`;
+    });
 }
 
 /* MENU */
