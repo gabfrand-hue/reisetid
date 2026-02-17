@@ -6,10 +6,12 @@
 <title>Industri Ufokus – Infoportal</title>
 
 <style>
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
     background:#f4f6f8;
+    color:#111827;
 }
 
 /* LOGIN */
@@ -17,14 +19,13 @@ body{
     max-width:420px;
     margin:120px auto;
 }
+
 .card{
     background:white;
     border-radius:12px;
     padding:30px;
     box-shadow:0 4px 18px rgba(0,0,0,0.08);
 }
-.center{text-align:center;}
-.hidden{display:none;}
 
 input{
     width:100%;
@@ -33,6 +34,7 @@ input{
     border:1px solid #ccc;
     border-radius:8px;
 }
+
 button{
     width:100%;
     padding:12px;
@@ -44,6 +46,9 @@ button{
     font-weight:bold;
     cursor:pointer;
 }
+
+.hidden{display:none;}
+.center{text-align:center;}
 
 /* APP */
 .app{
@@ -57,185 +62,44 @@ button{
     background:white;
     border-right:1px solid #e5e7eb;
     padding:20px;
+    flex-shrink:0;
 }
+
 .sidebar h2{margin-top:0;}
 
 .menu-btn{
-    display:block;
+    display:flex;
+    align-items:center;
+    gap:10px;
     width:100%;
     text-align:left;
-    background:none;
     border:none;
-    padding:12px 10px;
-    cursor:pointer;
-    font-size:15px;
+    background:none;
+    padding:12px 14px;
     border-radius:8px;
-    margin-bottom:5px;
-    transition:0.2s;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    color:#111827;
+    margin-bottom:8px;
+    white-space:nowrap;
 }
+
 .menu-btn:hover{
     background:#f1f5f9;
 }
 
-/* ACTIVE MENU */
 .menu-btn.active{
     background:#0d2b45;
     color:white;
-    font-weight:bold;
 }
 
 /* CONTENT */
 .content{
     flex:1;
-    padding:30px;
+    padding:35px;
 }
 
-.section{display:none;}
-.section.active{display:block;}
-
-.ref{
-    margin-top:10px;
-    padding:10px;
-    background:#f1f5f9;
-    border-left:4px solid #0d2b45;
-    font-size:14px;
-}
-
-/* TV */
-.tv-person{
-    margin-bottom:16px;
-    padding-bottom:12px;
-    border-bottom:1px solid #eee;
-}
-.tv-person:last-child{border:none;}
-
-@media(max-width:900px){
-    .app{flex-direction:column;}
-    .sidebar{width:auto;}
-}
-</style>
-</head>
-
-<body>
-
-<!-- LOGIN -->
-<div id="login" class="login-wrap">
-<div class="card center">
-<h2>🔒 Industri Ufokus</h2>
-<p>Intern infoportal</p>
-
-<input type="password" id="pw" placeholder="Passord">
-<button onclick="doLogin()">Logg inn</button>
-<p id="msg" style="color:red;"></p>
-</div>
-</div>
-
-<!-- APP -->
-<div id="app" class="hidden app">
-
-<!-- SIDEMENY -->
-<div class="sidebar">
-<h2>📌 Meny</h2>
-
-<button class="menu-btn active" data-target="welcome">👋 Velkommen</button>
-<button class="menu-btn" data-target="info">📘 Info – Mobilisering</button>
-<button class="menu-btn" data-target="tv">🤝 Tillitsvalgte</button>
-</div>
-
-<!-- CONTENT -->
-<div class="content">
-
-<div id="welcome" class="section active">
-<h1>👋 Velkommen</h1>
-<p>
-Velkommen til infoportalen. Her finner du informasjon om rotasjon,
-mobilisering og kontaktpersoner.
-</p>
-<div class="ref">
-Start med "Info – Mobilisering" hvis du er ny.
-</div>
-</div>
-
-<div id="info" class="section">
-<h1>📘 Første mobilisering</h1>
-
-<h2>Rotasjon</h2>
-<p>Rotasjon brukes ved arbeid utenbys.</p>
-<div class="ref">Tariff: LOK §9 A</div>
-
-<h2>Før mobilisering</h2>
-<p>Reise og plan skal være avklart før oppstart.</p>
-<div class="ref">Tariff: LOK §9 F</div>
-
-<h2>Reiser</h2>
-<p>Reiser skal dokumenteres korrekt.</p>
-<div class="ref">Tariff: LOK §9 E pkt.4</div>
-
-<h2>Diett</h2>
-<p>Diett gis ved reiser når du ikke kan spise hjemme.</p>
-<div class="ref">Tariff: LOK §9 K pkt.3</div>
-</div>
-
-<div id="tv" class="section">
-<h1>🤝 Tillitsvalgte</h1>
-
-<div class="tv-person">
-<strong>Leder – Stian Berg</strong><br>
-Telefon: +47 957 45 404<br>
-Epost: stianberg96@outlook.com
-</div>
-
-<div class="tv-person">
-<strong>Nestleder – Gabriel Attermann Frandsen</strong><br>
-Telefon: +47 400 54 274<br>
-Epost: gab.frand@gmail.com
-</div>
-
-<div class="tv-person">
-<strong>Gaute Hvammen</strong><br>
-Telefon: +47 951 23 094<br>
-Epost: gaute@industrifokus.no
-</div>
-
-</div>
-
-</div>
-</div>
-
-<script>
-const PASSWORD="Ufokus";
-
-/* LOGIN */
-function doLogin(){
-    const pw=document.getElementById("pw").value.trim();
-    if(pw===PASSWORD){
-        document.getElementById("login").style.display="none";
-        document.getElementById("app").classList.remove("hidden");
-    }else{
-        document.getElementById("msg").innerText="Feil passord";
-    }
-}
-
-/* MENU SYSTEM */
-const buttons=document.querySelectorAll(".menu-btn");
-
-buttons.forEach(btn=>{
-    btn.addEventListener("click",()=>{
-        // fjern aktiv
-        buttons.forEach(b=>b.classList.remove("active"));
-
-        // sett aktiv
-        btn.classList.add("active");
-
-        // bytt side
-        document.querySelectorAll(".section")
-            .forEach(s=>s.classList.remove("active"));
-
-        document.getElementById(btn.dataset.target)
-            .classList.add("active");
-    });
-});
-</script>
-
-</body>
-</html>
+.content-wrapper{
+    background:white;
+    border-
