@@ -6,6 +6,7 @@
 <title>Industri Ufokus – Infoportal</title>
 
 <style>
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
@@ -13,7 +14,8 @@ body{
     color:#111827;
 }
 
-/* ===== LOGIN SCREEN ===== */
+/* ===== LOGIN ===== */
+
 #login{
     position:fixed;
     inset:0;
@@ -54,8 +56,9 @@ button{
 }
 
 /* ===== APP ===== */
+
 #app{
-    display:none;   /* SUPER IMPORTANT */
+    display:none;
 }
 
 .app{
@@ -63,7 +66,8 @@ button{
     min-height:100vh;
 }
 
-/* SIDEBAR */
+/* ===== SIDEBAR ===== */
+
 .sidebar{
     width:240px;
     background:white;
@@ -101,7 +105,14 @@ button{
     color:white;
 }
 
-/* CONTENT */
+/* aktiv når man scroller i info */
+.menu-btn.section-active{
+    background:#0d2b45;
+    color:white;
+}
+
+/* ===== CONTENT ===== */
+
 .content{
     flex:1;
     padding:35px;
@@ -115,7 +126,8 @@ button{
     min-height:500px;
 }
 
-/* ERROR */
+/* ===== ERROR ===== */
+
 .error-box{
     background:#fee2e2;
     border-left:4px solid #dc2626;
@@ -123,8 +135,10 @@ button{
     border-radius:6px;
 }
 
-/* MOBILE */
+/* ===== MOBILE ===== */
+
 @media(max-width:900px){
+
     .app{
         flex-direction:column;
     }
@@ -135,6 +149,7 @@ button{
         border-bottom:1px solid #e5e7eb;
     }
 }
+
 </style>
 </head>
 
@@ -144,7 +159,7 @@ button{
 <div id="login">
 <div class="login-card">
 
-<h2>🔒 Industri Ufokus</h2>
+<h2>Industri Ufokus</h2>
 <p>Intern infoportal</p>
 
 <input type="password" id="pw" placeholder="Passord">
@@ -158,15 +173,26 @@ button{
 <!-- APP -->
 <div id="app" class="app">
 
+<!-- MENU -->
 <div class="sidebar">
-<h2>📌 Meny</h2>
 
-<button class="menu-btn active" data-page="welcome.html">👋 Velkommen</button>
-<button class="menu-btn" data-page="info.html">📘 Info – Mobilisering</button>
-<button class="menu-btn" data-page="tillitsvalgte.html">🤝 Tillitsvalgte</button>
+<h2>Meny</h2>
+
+<button class="menu-btn active" data-page="welcome.html">
+Velkommen
+</button>
+
+<button class="menu-btn" data-page="info.html" data-scrollspy="true">
+Info – Mobilisering
+</button>
+
+<button class="menu-btn" data-page="tillitsvalgte.html">
+Tillitsvalgte
+</button>
 
 </div>
 
+<!-- CONTENT -->
 <div class="content">
 <div class="content-wrapper" id="pageContent">
 Laster...
@@ -177,14 +203,15 @@ Laster...
 
 <script>
 
-const PASSWORD = "Ufokus";
+const PASSWORD="Ufokus";
 
-/* LOGIN */
+/* ===== LOGIN ===== */
+
 function doLogin(){
 
-    const pw = document.getElementById("pw").value.trim();
+    const pw=document.getElementById("pw").value.trim();
 
-    if(pw === PASSWORD){
+    if(pw===PASSWORD){
 
         document.getElementById("login").style.display="none";
         document.getElementById("app").style.display="flex";
@@ -196,7 +223,8 @@ function doLogin(){
     }
 }
 
-/* SAFE PAGE LOAD */
+/* ===== LOAD PAGE ===== */
+
 function loadPage(page){
 
     fetch(page)
@@ -206,28 +234,72 @@ function loadPage(page){
     })
     .then(html=>{
         document.getElementById("pageContent").innerHTML=html;
+        initScrollSpy();
     })
     .catch(()=>{
         document.getElementById("pageContent").innerHTML=
         `<div class="error-box">
-        ❗ Kunne ikke laste <b>${page}</b><br>
+        Kunne ikke laste <b>${page}</b><br>
         Sjekk at filen finnes i samme mappe.
         </div>`;
     });
 }
 
-/* MENU */
+/* ===== MENU ===== */
+
 const buttons=document.querySelectorAll(".menu-btn");
 
 buttons.forEach(btn=>{
+
     btn.addEventListener("click",()=>{
 
-        buttons.forEach(b=>b.classList.remove("active"));
+        buttons.forEach(b=>{
+            b.classList.remove("active");
+            b.classList.remove("section-active");
+        });
+
         btn.classList.add("active");
 
         loadPage(btn.dataset.page);
     });
+
 });
+
+/* ===== SCROLL SPY ===== */
+
+function initScrollSpy(){
+
+    const sections=
+        document.querySelectorAll("#pageContent h2[id]");
+
+    if(!sections.length) return;
+
+    const infoBtn=
+        document.querySelector('[data-page="info.html"]');
+
+    const observer=new IntersectionObserver((entries)=>{
+
+        entries.forEach(entry=>{
+
+            if(entry.isIntersecting && infoBtn){
+
+                buttons.forEach(b=>
+                    b.classList.remove("section-active"));
+
+                infoBtn.classList.add("section-active");
+            }
+
+        });
+
+    },{
+        root:null,
+        rootMargin:"-40% 0px -50% 0px",
+        threshold:0
+    });
+
+    sections.forEach(s=>observer.observe(s));
+}
+
 </script>
 
 </body>
