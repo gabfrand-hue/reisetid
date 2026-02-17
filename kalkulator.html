@@ -3,313 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ansattportal</title>
+<title>LOK §9F Kalkulator</title>
 
 <style>
 body{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f4f6f8;
-    color:#222;
+    font-family: Arial;
+    background:linear-gradient(135deg,#eef2f7,#f8fafc);
 }
 
-/* HEADER */
-header{
-    background:#0d2b45;
-    color:white;
-    padding:20px;
-    text-align:center;
-}
-header h1{margin:0;}
-#clock{font-size:14px;margin-top:6px;opacity:0.9;}
-
-/* ALERT */
-.alert{
-    background:#ffefc4;
-    padding:10px;
-    text-align:center;
-    font-weight:bold;
-}
-
-/* LAYOUT */
-.container{
-    display:flex;
-    gap:20px;
-    padding:20px;
-}
-
-/* SIDEBAR */
-.sidebar{
-    width:280px;
+.nav{
     background:white;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.08);
-    height:fit-content;
-}
-.sidebar ul{
-    list-style:none;
-    padding:0;
-}
-.sidebar li{
-    padding:8px 0;
-    border-bottom:1px solid #eee;
+    padding:18px 28px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
 }
 
-/* FAVORITTER */
-.quick-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-.quick-buttons button{
-    border:none;
-    background:#0d2b45;
-    color:white;
-    padding:8px 12px;
-    border-radius:8px;
-    cursor:pointer;
+.nav a{
+    text-decoration:none;
+    font-weight:600;
+    margin-right:18px;
+    color:#111827;
 }
 
-/* MAIN GRID */
-.main{
-    flex:1;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
+.container{
+    max-width:1000px;
+    margin:60px auto;
+    padding:0 20px;
 }
 
-/* CARD */
 .card{
     background:white;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.08);
-    overflow:hidden;
+    border-radius:18px;
+    padding:50px;
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.08),
+        0 4px 12px rgba(0,0,0,0.04);
 }
 
-/* CLICKABLE HEADER */
-.card-header{
-    padding:15px 20px;
-    cursor:pointer;
-    background:#ffffff;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-weight:bold;
-    color:#0d2b45;
-    border-bottom:1px solid #eee;
+h1{
+    margin-top:0;
+    font-size:44px;
 }
 
-.card-header:hover{
-    background:#f7f9fb;
-}
-
-/* COLLAPSIBLE CONTENT */
-.card-content{
-    padding:20px;
-    display:none;
-}
-
-.card.open .card-content{
+label{
+    font-weight:600;
     display:block;
+    margin-top:20px;
 }
 
-/* STATUS BOXES */
-.info-box{
-    padding:10px;
-    margin-top:8px;
-    border-left:4px solid;
-    border-radius:4px;
-    font-size:14px;
-}
-.info-blue{background:#e9f3ff;border-color:#1976d2;}
-.info-green{background:#eaf7ea;border-color:#2e7d32;}
-.info-yellow{background:#fff8e1;border-color:#f9a825;}
-.info-red{background:#fdecea;border-color:#d32f2f;}
-
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:15px;
-    font-size:13px;
-    color:#666;
+input, select{
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #d1d5db;
+    margin-top:6px;
 }
 
-/* MODAL */
-.modal{
-    display:none;
-    position:fixed;
-    left:0;top:0;
-    width:100%;height:100%;
-    background:rgba(0,0,0,0.45);
+.row{
+    display:flex;
+    gap:10px;
 }
-.modal-content{
-    background:white;
-    max-width:600px;
-    margin:8% auto;
+
+.result{
+    margin-top:30px;
     padding:25px;
-    border-radius:12px;
-}
-.close-btn{
-    margin-top:12px;
-    background:#0d2b45;
+    background:#111827;
     color:white;
-    border:none;
-    padding:10px 14px;
-    border-radius:8px;
-    cursor:pointer;
+    border-radius:12px;
+    font-size:18px;
 }
 
-/* MOBILE */
-@media(max-width:900px){
-    .container{flex-direction:column;}
-    .sidebar{width:auto;}
+.big{
+    font-size:28px;
+    font-weight:700;
+}
+
+img{
+    width:100%;
+    margin-top:20px;
+    border-radius:12px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>Ansattportal</h1>
-<div id="clock"></div>
-</header>
-
-<div class="alert">
-📢 Husk å sende reiseregning innen siste arbeidsdag i måneden.
+<div class="nav">
+<a href="index.html">📘 Første mobilisering</a>
+<a href="kalkulator.html">🧮 Kalkulator</a>
 </div>
 
 <div class="container">
-
-<!-- SIDEBAR -->
-<aside class="sidebar">
-<h2>📌 Hurtigmeny</h2>
-<ul>
-<li>🧭 Kom i gang</li>
-<li>📅 Rotasjon & arbeidstid</li>
-<li>💰 Lønn & reiseregning</li>
-<li>🧾 Overtid & reisetid</li>
-<li>👷 HMS & varsling</li>
-<li>👥 Tillitsvalgte</li>
-<li>💡 Nyttig å vite</li>
-</ul>
-
-<h2>⭐ Favoritter</h2>
-<div class="quick-buttons">
-<button>Timeregistrering</button>
-<button>Turnus</button>
-<button>Ferie</button>
-<button>Avvik</button>
-</div>
-</aside>
-
-<!-- MAIN -->
-<section class="main">
-
-<!-- CARD -->
-<div class="card open">
-<div class="card-header">🔵 Hva skjer nå? <span>▼</span></div>
-<div class="card-content">
-<div class="info-box info-blue">
-• Ny mobiliseringsplan publisert<br>
-• Neste medlemsmøte: Fredag kl 14:00
-</div>
-<div class="info-box info-yellow">
-⚠️ Oppdaterte rutiner for reiseregning — les før innsending.
-</div>
-</div>
-</div>
-
 <div class="card">
-<div class="card-header">👥 Tillitsvalgte <span>▼</span></div>
-<div class="card-content">
-<p>Tillitsvalgte hjelper med arbeidstid, lønn, diett og arbeidsmiljø.</p>
-<div class="info-box info-green">
-✔ Tillitsvalgt: <strong>Gabriel Attermann Frandsen</strong><br>
-Tidlig dialog løser flest saker.
-</div>
-</div>
+
+<h1>LOK §9F Reisetid & Diett kalkulator</h1>
+
+<label>Rotasjon</label>
+<select id="rotation">
+<option value="35">14/21</option>
+<option value="35">15/20</option>
+</select>
+
+<label>Første arbeidsdag</label>
+<input type="date" id="startDate">
+
+<label>Reisetid én vei</label>
+<div class="row">
+<input type="number" id="hours" value="6">
+<input type="number" id="minutes" value="0">
 </div>
 
-<div class="card">
-<div class="card-header">🧭 Kom i gang <span>▼</span></div>
-<div class="card-content">
-<ul>
-<li>Kontaktpersoner</li>
-<li>Melde fravær og sykdom</li>
-<li>Rotasjon og mobilisering</li>
-<li>Lønnsslipp & reiseregning</li>
-</ul>
-</div>
+<label>Timeslønn (kr)</label>
+<input type="number" id="rate" value="293.56" step="0.01">
+
+<label>Diett sats (hver vei)</label>
+<select id="dietRate">
+<option value="384">6–12 timer (384 kr)</option>
+<option value="713">Over 12 timer (713 kr)</option>
+<option value="977">Med overnatting (977 kr)</option>
+</select>
+
+<label>Betalbare rotasjoner</label>
+<input type="number" id="paidTrips" value="7">
+
+<div class="result">
+<p>Rotasjoner per år: <span id="rotations"></span></p>
+<p>Total pr år: <span id="yearTotal"></span> kr</p>
+<p class="big">Snitt pr rotasjon: <span id="avg"></span> kr</p>
 </div>
 
-<div class="card">
-<div class="card-header">📑 Rettigheter & avtaler <span>▼</span></div>
-<div class="card-content">
-<ul>
-<li>LOK / tariff forklart enkelt</li>
-<li>Diett og utlegg</li>
-<li>Overtid og reisetid</li>
-</ul>
-<div class="info-box info-red">
-❗ Kritiske HMS-avvik meldes umiddelbart.
-</div>
-</div>
-</div>
+<img src="reise.png" alt="Diett satser">
 
-<div class="card">
-<div class="card-header">💡 Nyttig å vite <span>▼</span></div>
-<div class="card-content">
-<ul>
-<li>Vanlige feil på reiseregning</li>
-<li>Lønnsberegning i rotasjon</li>
-<li>Tips til nyansatte</li>
-</ul>
-</div>
-</div>
-
-</section>
-</div>
-
-<footer>
-Intern informasjonsportal — oversikt, samarbeid og enkel tilgang.
-</footer>
-
-<!-- WELCOME -->
-<div id="welcomeModal" class="modal">
-<div class="modal-content">
-<h2>Velkommen 👋</h2>
-<p>Start med «Kom i gang» i hurtigmenyen.</p>
-<button class="close-btn" onclick="closeModal()">Lukk</button>
 </div>
 </div>
 
 <script>
-/* CLOCK */
-function updateClock(){
-  document.getElementById("clock").innerText =
-    new Date().toLocaleString("no-NO");
+function countRotations(start,cycle){
+    if(!start) return 0;
+    let s=new Date(start);
+    let end=new Date(s);
+    end.setFullYear(end.getFullYear()+1);
+    let count=0;
+    while(s<end){
+        count++;
+        s.setDate(s.getDate()+cycle);
+    }
+    return count;
 }
-setInterval(updateClock,1000);
-updateClock();
 
-/* COLLAPSIBLE CARDS */
-document.querySelectorAll(".card-header").forEach(header=>{
-  header.addEventListener("click",()=>{
-    header.parentElement.classList.toggle("open");
-  });
+function calc(){
+    let cycle=35;
+    let start=document.getElementById("startDate").value;
+    let hours=parseFloat(document.getElementById("hours").value)||0;
+    let minutes=parseFloat(document.getElementById("minutes").value)||0;
+    let rate=parseFloat(document.getElementById("rate").value)||0;
+    let paid=parseFloat(document.getElementById("paidTrips").value)||0;
+    let diet=parseFloat(document.getElementById("dietRate").value)||0;
+
+    let rotations=countRotations(start,cycle);
+    let totalHours=hours+(minutes/60);
+    let overtime=rate*1.5;
+    let travel=totalHours*2*overtime;
+    let dietTotal=diet*2;
+    let year=(travel+dietTotal)*paid;
+    let avg=rotations>0?year/rotations:0;
+
+    document.getElementById("rotations").innerText=rotations;
+    document.getElementById("yearTotal").innerText=year.toFixed(2);
+    document.getElementById("avg").innerText=avg.toFixed(2);
+}
+
+document.querySelectorAll("input,select").forEach(el=>{
+    el.addEventListener("input",calc);
 });
-
-/* WELCOME */
-function closeModal(){
-  document.getElementById("welcomeModal").style.display="none";
-  localStorage.setItem("welcomeShown","yes");
-}
-window.onload=function(){
-  if(!localStorage.getItem("welcomeShown")){
-    document.getElementById("welcomeModal").style.display="block";
-  }
-}
+calc();
 </script>
 
 </body>
