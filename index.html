@@ -3,96 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Industri Ufokus – Infoportal</title>
 
 <style>
 body{
     margin:0;
-    font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#eef2f7,#f8fafc);
+    font-family:Arial, sans-serif;
+    background:#f4f6f8;
+    color:#1f2937;
+    line-height:1.6;
 }
 
-/* LAYOUT */
+/* ===== LAYOUT ===== */
 .container{
-    max-width:1000px;
-    margin:60px auto;
+    max-width:900px;
+    margin:40px auto;
     padding:0 20px;
 }
+
 .card{
     background:white;
-    border-radius:18px;
-    padding:50px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.08);
-    margin-bottom:30px;
+    border-radius:14px;
+    padding:35px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.06);
+    margin-bottom:25px;
 }
 
-/* NAV */
+/* ===== NAV ===== */
 .nav{
+    position:sticky;
+    top:0;
     background:white;
-    padding:18px 28px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    padding:14px 20px;
+    border-bottom:1px solid #e5e7eb;
+    z-index:100;
 }
 .nav a{
     text-decoration:none;
-    font-weight:bold;
-    margin-right:15px;
+    font-weight:600;
+    margin-right:18px;
     color:#111827;
 }
+.nav a:hover{
+    color:#0d2b45;
+}
 
-h1{margin-top:0;font-size:42px;}
-h2{margin-top:35px;}
+/* ===== TYPO ===== */
+h1{
+    margin-top:0;
+    font-size:32px;
+}
+h2{
+    margin-top:30px;
+    font-size:22px;
+}
+p{
+    margin:10px 0;
+}
 
 .ref{
     margin-top:10px;
-    padding:12px;
+    padding:10px 12px;
     background:#f1f5f9;
-    border-left:4px solid #111827;
+    border-left:4px solid #0d2b45;
     font-size:14px;
+    border-radius:6px;
 }
 
-/* LOGIN */
+/* ===== LOGIN ===== */
+.login-wrap{
+    max-width:420px;
+    margin:120px auto;
+}
+
 input{
     width:100%;
-    padding:14px;
-    border:1px solid #ccc;
-    border-radius:10px;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
     margin-top:10px;
+    font-size:16px;
 }
+
 button{
     width:100%;
-    padding:14px;
+    padding:12px;
     margin-top:12px;
     border:none;
-    border-radius:10px;
-    background:#111827;
+    border-radius:8px;
+    background:#0d2b45;
     color:white;
     font-weight:bold;
     cursor:pointer;
+}
+button:hover{
+    background:#143a5e;
 }
 
 .center{text-align:center;}
 .hidden{display:none;}
 .logo{
-    font-size:28px;
+    font-size:26px;
     font-weight:700;
-    margin-bottom:20px;
+    margin-bottom:12px;
 }
 
-/* Tillitsvalgt */
+/* ===== TILLITSVALGTE ===== */
 .tv-box{
     background:#f8fafc;
     border:1px solid #e2e8f0;
-    border-radius:14px;
-    padding:25px;
+    border-radius:12px;
+    padding:20px;
 }
+
 .tv-person{
-    margin-bottom:18px;
-    padding-bottom:14px;
+    padding:14px 0;
     border-bottom:1px solid #e5e7eb;
 }
-.tv-person:last-child{
-    border-bottom:none;
+.tv-person:last-child{border-bottom:none;}
+
+.tv-person strong{
+    display:block;
+    margin-bottom:4px;
+}
+
+.tv-person a{
+    color:#0d2b45;
+    text-decoration:none;
+}
+.tv-person a:hover{
+    text-decoration:underline;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+    .card{padding:25px;}
+    h1{font-size:26px;}
 }
 </style>
 </head>
@@ -100,7 +146,7 @@ button{
 <body>
 
 <!-- LOGIN -->
-<div id="login" class="container">
+<div id="login" class="login-wrap">
 <div class="card center">
 
 <div class="logo">Industri Ufokus</div>
@@ -114,98 +160,56 @@ button{
 </div>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <div id="app" class="hidden">
 
 <div class="nav">
 <a href="index.html">📘 Første mobilisering</a>
-<a href="kalkulator.html">🧮 Kalkulator</a>
+<a href="kalkulator.html">🧮 Verktøy</a>
 </div>
 
 <div class="container">
 
-<!-- MOBILISERING -->
+<!-- INFO -->
 <div class="card">
 
 <h1>Første mobilisering og veien videre</h1>
 
 <p>
-Hos oss har vi en <strong>godkjent rotasjonsordning</strong>.  
-Det betyr at arbeidstid, reiser og friperioder er avtalt etter tariff og arbeidsmiljøloven.
-Denne informasjonen er laget for at nye ansatte skal forstå hvordan ordningen faktisk praktiseres.
+Hos oss har vi en <strong>godkjent rotasjonsordning</strong>.
+Denne siden forklarer enkelt hvordan ordningen fungerer i praksis.
 </p>
 
 <h2>1. Rotasjon</h2>
-<p>
-Rotasjon brukes når du ikke kan ha nattkvarter hjemme og jobber på anlegg utenbys.
-Du jobber en planlagt periode og har deretter friperiode.
-</p>
-
-<p><strong>Eksempel:</strong><br>
-Du bor i Oslo og jobber på Stord. Du bor borte i arbeidsperioden og reiser hjem i friperioden.
-Dette regnes som arbeid utenfor bedriften.
-</p>
-
+<p>Rotasjon brukes når arbeid skjer utenbys og du ikke kan ha nattkvarter hjemme.</p>
 <div class="ref">Tariff: LOK §9 A</div>
 
 <h2>2. Før mobilisering</h2>
-<p>
-Før første mobilisering skal arbeidsplan, rotasjon, innkvartering og reiseopplegg være avklart.
-Rotasjonsordningen hos oss er godkjent, og arbeidstiden følger denne planen.
-</p>
-
-<p><strong>Eksempel:</strong><br>
-14/21 rotasjon betyr 14 dager arbeid etter plan og 21 dager fri.
-</p>
-
+<p>Arbeidsplan, rotasjon, innkvartering og reise skal være avklart før oppstart.</p>
 <div class="ref">Tariff: LOK §9 F</div>
 
 <h2>3. Reiser</h2>
-<p>
-Reiser mellom hjemsted og anlegg følger tariffens regler.
-Reisetid og kostnader skal føres og dokumenteres riktig.
-</p>
-
-<p><strong>Eksempel:</strong><br>
-Oslo → fly → transport til anlegg føres som reise.
-</p>
-
+<p>Reiser mellom hjem og anlegg følger tariffens regler og skal dokumenteres riktig.</p>
 <div class="ref">Tariff: LOK §9 E pkt.4</div>
 
 <h2>4. Betalbare reiser</h2>
-<p>
-I rotasjon er det ikke nødvendigvis alle reiser som gir rett på reisetid.
-Tariffen angir oppstart, avslutning og ferieperioder som betalingspliktige.
-</p>
-
-<p><strong>Praksis:</strong><br>
-Det kan være flere reiser i året enn de som gir tarifffestet betaling — dette er normalt i rotasjonsarbeid.
-</p>
-
+<p>Ikke alle reiser i rotasjon gir reisetidsbetaling. Dette er normalt.</p>
 <div class="ref">Tariff: LOK §9 F</div>
 
 <h2>5. Diett</h2>
-<p>
-Diett er kostgodtgjørelse under reise når du ikke kan spise hjemme.
-Satsen avhenger av hvor lenge reisen varer.
-</p>
-
+<p>Diett gis under reise når du ikke kan spise hjemme.</p>
 <div class="ref">Tariff: LOK §9 K pkt.3</div>
 
 <h2>6. Arbeidstid</h2>
-<p>
-Godkjent rotasjon betyr at arbeidstiden i planen er ordinær arbeidstid.
-Friperioden er faktisk fritid.
-</p>
-
+<p>Arbeidstid i rotasjonsplan er ordinær arbeidstid. Friperiode er fritid.</p>
 <div class="ref">Tariff: LOK §9 F</div>
 
 <h2>7. Viktig å huske</h2>
 <p>
 • Før reisetid korrekt<br>
-• Ta vare på billetter og kvitteringer<br>
-• Følg rotasjonsplanen<br>
-• Spør tillitsvalgt tidlig ved spørsmål
+• Ta vare på kvitteringer<br>
+• Følg rotasjonsplan<br>
+• Kontakt tillitsvalgt tidlig ved spørsmål
 </p>
 
 </div>
@@ -216,54 +220,48 @@ Friperioden er faktisk fritid.
 <h1>🤝 Tillitsvalgte</h1>
 
 <p>
-Terskelen for å kontakte tillitsvalgte er lav.  
-Tillitsvalgte er der for å hjelpe ansatte med spørsmål om arbeidstid, rotasjon, lønn, reiser, diett og arbeidsmiljø.
-Er du usikker på noe — spør heller en gang for mye enn en gang for lite.
+Tillitsvalgte hjelper med spørsmål om arbeidstid, rotasjon, lønn, reiser og arbeidsmiljø.
 </p>
 
 <div class="tv-box">
 
 <div class="tv-person">
-<strong>Leder – Stian Berg</strong><br>
+<strong>Leder – Stian Berg</strong>
 Telefon: +47 957 45 404<br>
-Epost: stianberg96@outlook.com
+<a href="mailto:stianberg96@outlook.com">stianberg96@outlook.com</a>
 </div>
 
 <div class="tv-person">
-<strong>Nestleder – Gabriel Attermann Frandsen</strong><br>
+<strong>Nestleder – Gabriel Attermann Frandsen</strong>
 Telefon: +47 400 54 274<br>
-Epost: gab.frand@gmail.com
+<a href="mailto:gab.frand@gmail.com">gab.frand@gmail.com</a>
 </div>
 
 <div class="tv-person">
-<strong>Gaute Hvammen</strong><br>
+<strong>Gaute Hvammen</strong>
 Telefon: +47 951 23 094<br>
-Epost: gaute@industrifokus.no
+<a href="mailto:gaute@industrifokus.no">gaute@industrifokus.no</a>
 </div>
 
 <div class="tv-person">
-<strong>Håkon Wedding</strong><br>
+<strong>Håkon Wedding</strong>
 Telefon: +47 459 18 601<br>
-Epost: haakon@industrifokus.no
+<a href="mailto:haakon@industrifokus.no">haakon@industrifokus.no</a>
 </div>
 
 <div class="tv-person">
-<strong>Jonas Flatås</strong><br>
+<strong>Jonas Flatås</strong>
 Telefon: +47 968 12 831<br>
-Epost: jonasflataas@gmail.com
+<a href="mailto:jonasflataas@gmail.com">jonasflataas@gmail.com</a>
 </div>
 
 </div>
-
 </div>
 
 </div>
 </div>
 
 <script>
-
-/* ===== SIMPLE WORKING LOGIN ===== */
-
 const PASSWORD = "Ufokus";
 
 const loginBox = document.getElementById("login");
@@ -274,21 +272,17 @@ const msg = document.getElementById("msg");
 
 function doLogin(){
     if(input.value.trim() === PASSWORD){
-        loginBox.style.display = "none";
+        loginBox.style.display="none";
         app.classList.remove("hidden");
     }else{
-        msg.textContent = "Feil passord";
+        msg.textContent="Feil passord";
     }
 }
 
-btn.addEventListener("click", doLogin);
-
-input.addEventListener("keypress", function(e){
-    if(e.key === "Enter"){
-        doLogin();
-    }
+btn.addEventListener("click",doLogin);
+input.addEventListener("keypress",e=>{
+    if(e.key==="Enter") doLogin();
 });
-
 </script>
 
 </body>
