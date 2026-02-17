@@ -3,236 +3,293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ansattportal</title>
+
+<title>Industri Ufokus – Infoportal</title>
 
 <style>
 body{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f4f6f8;
-    scroll-behavior:smooth;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#eef2f7,#f8fafc);
 }
 
-header{
-    background:#0d2b45;
-    color:white;
-    padding:20px;
-    text-align:center;
-}
-
-.alert{
-    background:#ffefc4;
-    padding:10px;
-    text-align:center;
-    font-weight:bold;
-}
-
+/* LAYOUT */
 .container{
-    display:flex;
-    gap:20px;
-    padding:20px;
+    max-width:1000px;
+    margin:60px auto;
+    padding:0 20px;
 }
-
-.sidebar{
-    width:280px;
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.08);
-    height:fit-content;
-}
-
-.sidebar h2{margin-top:0;}
-
-.sidebar a{
-    display:block;
-    padding:10px 0;
-    color:#222;
-    text-decoration:none;
-    border-bottom:1px solid #eee;
-}
-.sidebar a:hover{
-    color:#0d2b45;
-    font-weight:bold;
-}
-
-/* MAIN GRID */
-.main{
-    flex:1;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:20px;
-}
-
 .card{
     background:white;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.08);
-    overflow:hidden;
+    border-radius:18px;
+    padding:50px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.08);
+    margin-bottom:30px;
 }
 
-.card-header{
-    padding:15px 20px;
+/* NAV */
+.nav{
+    background:white;
+    padding:18px 28px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.nav a{
+    text-decoration:none;
     font-weight:bold;
-    background:#fff;
-    border-bottom:1px solid #eee;
-    color:#0d2b45;
+    margin-right:15px;
+    color:#111827;
 }
 
-.card-content{
-    padding:20px;
-}
+h1{margin-top:0;font-size:42px;}
+h2{margin-top:35px;}
 
-.info-box{
-    padding:10px;
-    border-left:4px solid;
+.ref{
     margin-top:10px;
-    border-radius:4px;
+    padding:12px;
+    background:#f1f5f9;
+    border-left:4px solid #111827;
     font-size:14px;
 }
 
-.info-blue{background:#e9f3ff;border-color:#1976d2;}
-.info-yellow{background:#fff8e1;border-color:#f9a825;}
-.info-green{background:#eaf7ea;border-color:#2e7d32;}
-
-footer{
-    text-align:center;
-    padding:15px;
-    color:#666;
+/* LOGIN */
+input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    margin-top:10px;
+}
+button{
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    border:none;
+    border-radius:10px;
+    background:#111827;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-/* MOBILE */
-@media(max-width:900px){
-.container{flex-direction:column;}
-.sidebar{width:auto;}
+.center{text-align:center;}
+.hidden{display:none;}
+.logo{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+/* Tillitsvalgt */
+.tv-box{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:25px;
+}
+.tv-person{
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid #e5e7eb;
+}
+.tv-person:last-child{
+    border-bottom:none;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>Ansattportal</h1>
-</header>
+<!-- LOGIN -->
+<div id="login" class="container">
+<div class="card center">
 
-<div class="alert">
-📢 Husk å sende reiseregning innen siste arbeidsdag i måneden.
+<div class="logo">Industri Ufokus</div>
+<h2>🔒 Intern infoportal</h2>
+
+<input type="password" id="pw" placeholder="Passord">
+<button id="loginBtn">Logg inn</button>
+
+<p id="msg" style="color:red;"></p>
+
+</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="app" class="hidden">
+
+<div class="nav">
+<a href="index.html">📘 Første mobilisering</a>
+<a href="kalkulator.html">🧮 Kalkulator</a>
 </div>
 
 <div class="container">
 
-<!-- SIDEMENY -->
-<aside class="sidebar">
-<h2>📌 Hurtigmeny</h2>
+<!-- MOBILISERING -->
+<div class="card">
 
-<a href="#hva-skjer">🔵 Hva skjer nå?</a>
-<a href="#tillitsvalgte">👥 Tillitsvalgte</a>
-<a href="#kom-i-gang">🧭 Kom i gang</a>
-<a href="#rettigheter">📑 Rettigheter & avtaler</a>
-<a href="#nyttig">💡 Nyttig å vite</a>
+<h1>Første mobilisering og veien videre</h1>
 
-</aside>
+<p>
+Hos oss har vi en <strong>godkjent rotasjonsordning</strong>.  
+Det betyr at arbeidstid, reiser og friperioder er avtalt etter tariff og arbeidsmiljøloven.
+Denne informasjonen er laget for at nye ansatte skal forstå hvordan ordningen faktisk praktiseres.
+</p>
 
-<!-- MAIN -->
-<section class="main">
+<h2>1. Rotasjon</h2>
+<p>
+Rotasjon brukes når du ikke kan ha nattkvarter hjemme og jobber på anlegg utenbys.
+Du jobber en planlagt periode og har deretter friperiode.
+</p>
 
-<!-- HVA SKJER -->
-<div class="card" id="hva-skjer">
-<div class="card-header">🔵 Hva skjer nå?</div>
-<div class="card-content">
+<p><strong>Eksempel:</strong><br>
+Du bor i Oslo og jobber på Stord. Du bor borte i arbeidsperioden og reiser hjem i friperioden.
+Dette regnes som arbeid utenfor bedriften.
+</p>
 
-<div class="info-box info-blue">
-• Ny mobiliseringsplan publisert<br>
-• Neste medlemsmøte: Fredag kl 14:00
-</div>
+<div class="ref">Tariff: LOK §9 A</div>
 
-<div class="info-box info-yellow">
-⚠️ Oppdaterte rutiner for reiseregning — les før innsending.
-</div>
+<h2>2. Før mobilisering</h2>
+<p>
+Før første mobilisering skal arbeidsplan, rotasjon, innkvartering og reiseopplegg være avklart.
+Rotasjonsordningen hos oss er godkjent, og arbeidstiden følger denne planen.
+</p>
 
-</div>
+<p><strong>Eksempel:</strong><br>
+14/21 rotasjon betyr 14 dager arbeid etter plan og 21 dager fri.
+</p>
+
+<div class="ref">Tariff: LOK §9 F</div>
+
+<h2>3. Reiser</h2>
+<p>
+Reiser mellom hjemsted og anlegg følger tariffens regler.
+Reisetid og kostnader skal føres og dokumenteres riktig.
+</p>
+
+<p><strong>Eksempel:</strong><br>
+Oslo → fly → transport til anlegg føres som reise.
+</p>
+
+<div class="ref">Tariff: LOK §9 E pkt.4</div>
+
+<h2>4. Betalbare reiser</h2>
+<p>
+I rotasjon er det ikke nødvendigvis alle reiser som gir rett på reisetid.
+Tariffen angir oppstart, avslutning og ferieperioder som betalingspliktige.
+</p>
+
+<p><strong>Praksis:</strong><br>
+Det kan være flere reiser i året enn de som gir tarifffestet betaling — dette er normalt i rotasjonsarbeid.
+</p>
+
+<div class="ref">Tariff: LOK §9 F</div>
+
+<h2>5. Diett</h2>
+<p>
+Diett er kostgodtgjørelse under reise når du ikke kan spise hjemme.
+Satsen avhenger av hvor lenge reisen varer.
+</p>
+
+<div class="ref">Tariff: LOK §9 K pkt.3</div>
+
+<h2>6. Arbeidstid</h2>
+<p>
+Godkjent rotasjon betyr at arbeidstiden i planen er ordinær arbeidstid.
+Friperioden er faktisk fritid.
+</p>
+
+<div class="ref">Tariff: LOK §9 F</div>
+
+<h2>7. Viktig å huske</h2>
+<p>
+• Før reisetid korrekt<br>
+• Ta vare på billetter og kvitteringer<br>
+• Følg rotasjonsplanen<br>
+• Spør tillitsvalgt tidlig ved spørsmål
+</p>
+
 </div>
 
 <!-- TILLITSVALGTE -->
-<div class="card" id="tillitsvalgte">
-<div class="card-header">👥 Tillitsvalgte</div>
-<div class="card-content">
+<div class="card">
 
-<div class="info-box info-green">
-<strong>Gabriel Attermann Frandsen</strong><br>
-Tillitsvalgt<br>
-📧 gabriel@gmail.com
+<h1>🤝 Tillitsvalgte</h1>
+
+<p>
+Terskelen for å kontakte tillitsvalgte er lav.  
+Tillitsvalgte er der for å hjelpe ansatte med spørsmål om arbeidstid, rotasjon, lønn, reiser, diett og arbeidsmiljø.
+Er du usikker på noe — spør heller en gang for mye enn en gang for lite.
+</p>
+
+<div class="tv-box">
+
+<div class="tv-person">
+<strong>Leder – Stian Berg</strong><br>
+Telefon: +47 957 45 404<br>
+Epost: stianberg96@outlook.com
 </div>
 
-<div class="info-box info-green">
-<strong>Navn Eksempel</strong><br>
-Hovedtillitsvalgt<br>
-📧 eksempel@gmail.com
+<div class="tv-person">
+<strong>Nestleder – Gabriel Attermann Frandsen</strong><br>
+Telefon: +47 400 54 274<br>
+Epost: gab.frand@gmail.com
 </div>
 
-<div class="info-box info-green">
-<strong>Navn Eksempel 2</strong><br>
-Vernetjeneste / Tillitsvalgt<br>
-📧 eksempel2@gmail.com
+<div class="tv-person">
+<strong>Gaute Hvammen</strong><br>
+Telefon: +47 951 23 094<br>
+Epost: gaute@industrifokus.no
 </div>
 
+<div class="tv-person">
+<strong>Håkon Wedding</strong><br>
+Telefon: +47 459 18 601<br>
+Epost: haakon@industrifokus.no
 </div>
-</div>
 
-<!-- KOM I GANG -->
-<div class="card" id="kom-i-gang">
-<div class="card-header">🧭 Kom i gang</div>
-<div class="card-content">
-
-<p><strong>Dette er viktig for nye ansatte:</strong></p>
-
-<ul>
-<li>Kontaktpersoner og nøkkelroller</li>
-<li>Hvordan melde fravær og sykdom</li>
-<li>Arbeidstid, rotasjon og mobilisering</li>
-<li>Hvor du finner lønnsslipp og reiseregning</li>
-<li>Praktisk info om mat, bolig og parkering</li>
-</ul>
-
-<div class="info-box info-blue">
-Tips: Start alltid her hvis du er ny i rotasjon.
+<div class="tv-person">
+<strong>Jonas Flatås</strong><br>
+Telefon: +47 968 12 831<br>
+Epost: jonasflataas@gmail.com
 </div>
 
 </div>
+
 </div>
 
-<!-- RETTIGHETER -->
-<div class="card" id="rettigheter">
-<div class="card-header">📑 Rettigheter & avtaler</div>
-<div class="card-content">
-<ul>
-<li>LOK / tariff forklart enkelt</li>
-<li>Diett og reiseregning</li>
-<li>Overtid og reisetid</li>
-<li>Hvordan ta opp en sak</li>
-</ul>
 </div>
 </div>
 
-<!-- NYTTIG -->
-<div class="card" id="nyttig">
-<div class="card-header">💡 Nyttig å vite</div>
-<div class="card-content">
-<ul>
-<li>Vanlige feil på reiseregning</li>
-<li>Lønnsberegning i rotasjon</li>
-<li>Tips til nyansatte</li>
-<li>Hva gjør du ved endret plan</li>
-</ul>
-</div>
-</div>
+<script>
 
-</section>
-</div>
+/* ===== SIMPLE WORKING LOGIN ===== */
 
-<footer>
-Intern informasjonsportal — oversikt, samarbeid og enkel tilgang.
-</footer>
+const PASSWORD = "Ufokus";
+
+const loginBox = document.getElementById("login");
+const app = document.getElementById("app");
+const btn = document.getElementById("loginBtn");
+const input = document.getElementById("pw");
+const msg = document.getElementById("msg");
+
+function doLogin(){
+    if(input.value.trim() === PASSWORD){
+        loginBox.style.display = "none";
+        app.classList.remove("hidden");
+    }else{
+        msg.textContent = "Feil passord";
+    }
+}
+
+btn.addEventListener("click", doLogin);
+
+input.addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        doLogin();
+    }
+});
+
+</script>
 
 </body>
 </html>
