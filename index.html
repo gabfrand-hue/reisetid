@@ -8,66 +8,8 @@
 <style>
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:#f4f6f8;
-    color:#1f2937;
-    line-height:1.6;
-}
-
-/* ===== LAYOUT ===== */
-.container{
-    max-width:900px;
-    margin:40px auto;
-    padding:0 20px;
-}
-
-.card{
-    background:white;
-    border-radius:14px;
-    padding:35px;
-    box-shadow:0 4px 18px rgba(0,0,0,0.06);
-    margin-bottom:25px;
-}
-
-/* ===== NAV ===== */
-.nav{
-    position:sticky;
-    top:0;
-    background:white;
-    padding:14px 20px;
-    border-bottom:1px solid #e5e7eb;
-    z-index:100;
-}
-.nav a{
-    text-decoration:none;
-    font-weight:600;
-    margin-right:18px;
-    color:#111827;
-}
-.nav a:hover{
-    color:#0d2b45;
-}
-
-/* ===== TYPO ===== */
-h1{
-    margin-top:0;
-    font-size:32px;
-}
-h2{
-    margin-top:30px;
-    font-size:22px;
-}
-p{
-    margin:10px 0;
-}
-
-.ref{
-    margin-top:10px;
-    padding:10px 12px;
-    background:#f1f5f9;
-    border-left:4px solid #0d2b45;
-    font-size:14px;
-    border-radius:6px;
 }
 
 /* ===== LOGIN ===== */
@@ -76,15 +18,23 @@ p{
     margin:120px auto;
 }
 
+.card{
+    background:white;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.08);
+}
+
+.center{text-align:center;}
+.hidden{display:none;}
+
 input{
     width:100%;
     padding:12px;
-    border:1px solid #d1d5db;
-    border-radius:8px;
     margin-top:10px;
-    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:8px;
 }
-
 button{
     width:100%;
     padding:12px;
@@ -96,49 +46,75 @@ button{
     font-weight:bold;
     cursor:pointer;
 }
-button:hover{
-    background:#143a5e;
+
+/* ===== APP LAYOUT ===== */
+.app{
+    display:flex;
+    min-height:100vh;
 }
 
-.center{text-align:center;}
-.hidden{display:none;}
-.logo{
-    font-size:26px;
-    font-weight:700;
-    margin-bottom:12px;
-}
-
-/* ===== TILLITSVALGTE ===== */
-.tv-box{
-    background:#f8fafc;
-    border:1px solid #e2e8f0;
-    border-radius:12px;
+/* SIDEBAR */
+.sidebar{
+    width:240px;
+    background:white;
+    border-right:1px solid #e5e7eb;
     padding:20px;
 }
 
-.tv-person{
-    padding:14px 0;
-    border-bottom:1px solid #e5e7eb;
+.sidebar h2{
+    margin-top:0;
 }
-.tv-person:last-child{border-bottom:none;}
 
-.tv-person strong{
+.menu-btn{
     display:block;
-    margin-bottom:4px;
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    padding:12px 10px;
+    cursor:pointer;
+    font-size:15px;
+    border-radius:8px;
+}
+.menu-btn:hover{
+    background:#f1f5f9;
 }
 
-.tv-person a{
-    color:#0d2b45;
-    text-decoration:none;
-}
-.tv-person a:hover{
-    text-decoration:underline;
+/* CONTENT */
+.content{
+    flex:1;
+    padding:30px;
 }
 
-/* MOBILE */
-@media(max-width:700px){
-    .card{padding:25px;}
-    h1{font-size:26px;}
+.section{
+    display:none;
+}
+.section.active{
+    display:block;
+}
+
+h1{margin-top:0;}
+
+.ref{
+    margin-top:10px;
+    padding:10px;
+    background:#f1f5f9;
+    border-left:4px solid #0d2b45;
+    font-size:14px;
+    border-radius:6px;
+}
+
+/* TV */
+.tv-person{
+    margin-bottom:16px;
+    padding-bottom:12px;
+    border-bottom:1px solid #eee;
+}
+.tv-person:last-child{border:none;}
+
+@media(max-width:900px){
+    .app{flex-direction:column;}
+    .sidebar{width:auto;}
 }
 </style>
 </head>
@@ -149,140 +125,127 @@ button:hover{
 <div id="login" class="login-wrap">
 <div class="card center">
 
-<div class="logo">Industri Ufokus</div>
-<h2>🔒 Intern infoportal</h2>
+<h2>🔒 Industri Ufokus</h2>
+<p>Intern infoportal</p>
 
 <input type="password" id="pw" placeholder="Passord">
-<button id="loginBtn">Logg inn</button>
+<button onclick="doLogin()">Logg inn</button>
 
 <p id="msg" style="color:red;"></p>
 
 </div>
 </div>
 
-<!-- MAIN -->
-<div id="app" class="hidden">
+<!-- APP -->
+<div id="app" class="hidden app">
 
-<div class="nav">
-<a href="index.html">📘 Første mobilisering</a>
-<a href="kalkulator.html">🧮 Verktøy</a>
+<!-- SIDEMENY -->
+<div class="sidebar">
+<h2>📌 Meny</h2>
+
+<button class="menu-btn" onclick="showSection('welcome')">👋 Velkommen</button>
+<button class="menu-btn" onclick="showSection('info')">📘 Info – Mobilisering</button>
+<button class="menu-btn" onclick="showSection('tv')">🤝 Tillitsvalgte</button>
 </div>
 
-<div class="container">
+<!-- CONTENT -->
+<div class="content">
 
-<!-- INFO -->
-<div class="card">
-
-<h1>Første mobilisering og veien videre</h1>
+<!-- VELKOMMEN -->
+<div id="welcome" class="section active">
+<h1>👋 Velkommen</h1>
 
 <p>
-Hos oss har vi en <strong>godkjent rotasjonsordning</strong>.
-Denne siden forklarer enkelt hvordan ordningen fungerer i praksis.
+Velkommen til infoportalen for Industri Ufokus.
+Her finner du informasjon om mobilisering, rotasjon, reiser og kontaktpersoner.
 </p>
 
+<p>
+➡️ Start gjerne med <strong>Info – Mobilisering</strong> i menyen hvis du er ny.
+</p>
+
+<div class="ref">
+Denne siden er laget for å gjøre informasjon enklere å finne og forstå.
+</div>
+</div>
+
+<!-- INFO SIDE -->
+<div id="info" class="section">
+<h1>📘 Første mobilisering og veien videre</h1>
+
 <h2>1. Rotasjon</h2>
-<p>Rotasjon brukes når arbeid skjer utenbys og du ikke kan ha nattkvarter hjemme.</p>
+<p>Rotasjon brukes når arbeid skjer utenbys.</p>
 <div class="ref">Tariff: LOK §9 A</div>
 
 <h2>2. Før mobilisering</h2>
-<p>Arbeidsplan, rotasjon, innkvartering og reise skal være avklart før oppstart.</p>
+<p>Arbeidsplan og reise skal være avklart før oppstart.</p>
 <div class="ref">Tariff: LOK §9 F</div>
 
 <h2>3. Reiser</h2>
-<p>Reiser mellom hjem og anlegg følger tariffens regler og skal dokumenteres riktig.</p>
+<p>Reiser mellom hjem og anlegg skal dokumenteres korrekt.</p>
 <div class="ref">Tariff: LOK §9 E pkt.4</div>
 
-<h2>4. Betalbare reiser</h2>
-<p>Ikke alle reiser i rotasjon gir reisetidsbetaling. Dette er normalt.</p>
-<div class="ref">Tariff: LOK §9 F</div>
-
-<h2>5. Diett</h2>
-<p>Diett gis under reise når du ikke kan spise hjemme.</p>
+<h2>4. Diett</h2>
+<p>Diett gis ved reise når du ikke kan spise hjemme.</p>
 <div class="ref">Tariff: LOK §9 K pkt.3</div>
 
-<h2>6. Arbeidstid</h2>
-<p>Arbeidstid i rotasjonsplan er ordinær arbeidstid. Friperiode er fritid.</p>
-<div class="ref">Tariff: LOK §9 F</div>
-
-<h2>7. Viktig å huske</h2>
+<h2>5. Viktig å huske</h2>
 <p>
 • Før reisetid korrekt<br>
 • Ta vare på kvitteringer<br>
-• Følg rotasjonsplan<br>
-• Kontakt tillitsvalgt tidlig ved spørsmål
+• Følg rotasjonsplanen<br>
+• Kontakt tillitsvalgt ved spørsmål
 </p>
-
 </div>
 
 <!-- TILLITSVALGTE -->
-<div class="card">
-
+<div id="tv" class="section">
 <h1>🤝 Tillitsvalgte</h1>
 
-<p>
-Tillitsvalgte hjelper med spørsmål om arbeidstid, rotasjon, lønn, reiser og arbeidsmiljø.
-</p>
-
-<div class="tv-box">
+<p>Terskelen for å ta kontakt er lav.</p>
 
 <div class="tv-person">
-<strong>Leder – Stian Berg</strong>
+<strong>Leder – Stian Berg</strong><br>
 Telefon: +47 957 45 404<br>
-<a href="mailto:stianberg96@outlook.com">stianberg96@outlook.com</a>
+Epost: stianberg96@outlook.com
 </div>
 
 <div class="tv-person">
-<strong>Nestleder – Gabriel Attermann Frandsen</strong>
+<strong>Nestleder – Gabriel Attermann Frandsen</strong><br>
 Telefon: +47 400 54 274<br>
-<a href="mailto:gab.frand@gmail.com">gab.frand@gmail.com</a>
+Epost: gab.frand@gmail.com
 </div>
 
 <div class="tv-person">
-<strong>Gaute Hvammen</strong>
+<strong>Gaute Hvammen</strong><br>
 Telefon: +47 951 23 094<br>
-<a href="mailto:gaute@industrifokus.no">gaute@industrifokus.no</a>
+Epost: gaute@industrifokus.no
 </div>
 
-<div class="tv-person">
-<strong>Håkon Wedding</strong>
-Telefon: +47 459 18 601<br>
-<a href="mailto:haakon@industrifokus.no">haakon@industrifokus.no</a>
-</div>
-
-<div class="tv-person">
-<strong>Jonas Flatås</strong>
-Telefon: +47 968 12 831<br>
-<a href="mailto:jonasflataas@gmail.com">jonasflataas@gmail.com</a>
-</div>
-
-</div>
 </div>
 
 </div>
 </div>
 
 <script>
-const PASSWORD = "Ufokus";
-
-const loginBox = document.getElementById("login");
-const app = document.getElementById("app");
-const btn = document.getElementById("loginBtn");
-const input = document.getElementById("pw");
-const msg = document.getElementById("msg");
+const PASSWORD="Ufokus";
 
 function doLogin(){
-    if(input.value.trim() === PASSWORD){
-        loginBox.style.display="none";
-        app.classList.remove("hidden");
+    const pw=document.getElementById("pw").value.trim();
+    if(pw===PASSWORD){
+        document.getElementById("login").style.display="none";
+        document.getElementById("app").classList.remove("hidden");
     }else{
-        msg.textContent="Feil passord";
+        document.getElementById("msg").innerText="Feil passord";
     }
 }
 
-btn.addEventListener("click",doLogin);
-input.addEventListener("keypress",e=>{
-    if(e.key==="Enter") doLogin();
-});
+/* MENU SYSTEM */
+function showSection(id){
+    document.querySelectorAll(".section")
+      .forEach(s=>s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
 </script>
 
 </body>
