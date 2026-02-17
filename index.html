@@ -102,4 +102,105 @@ button{
 
 .content-wrapper{
     background:white;
-    border-
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.06);
+}
+
+.content p{
+    font-size:17px;
+    line-height:1.6;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+    .app{flex-direction:column;}
+    .sidebar{
+        width:100%;
+        border-right:none;
+        border-bottom:1px solid #e5e7eb;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login" class="login-wrap">
+<div class="card center">
+<h2>🔒 Industri Ufokus</h2>
+<p>Intern infoportal</p>
+
+<input type="password" id="pw" placeholder="Passord">
+<button onclick="doLogin()">Logg inn</button>
+
+<p id="msg" style="color:red;"></p>
+</div>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden app">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h2>📌 Meny</h2>
+
+<button class="menu-btn active" data-page="welcome.html">👋 Velkommen</button>
+<button class="menu-btn" data-page="info.html">📘 Info – Mobilisering</button>
+<button class="menu-btn" data-page="tillitsvalgte.html">🤝 Tillitsvalgte</button>
+
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+<div class="content-wrapper" id="pageContent">
+Laster...
+</div>
+</div>
+
+</div>
+
+<script>
+
+const PASSWORD="Ufokus";
+
+/* LOGIN */
+function doLogin(){
+    const pw=document.getElementById("pw").value.trim();
+    if(pw===PASSWORD){
+        document.getElementById("login").style.display="none";
+        document.getElementById("app").classList.remove("hidden");
+        loadPage("welcome.html");
+    }else{
+        document.getElementById("msg").innerText="Feil passord";
+    }
+}
+
+/* LOAD PAGES */
+function loadPage(page){
+    fetch(page)
+        .then(r=>r.text())
+        .then(html=>{
+            document.getElementById("pageContent").innerHTML=html;
+        });
+}
+
+/* MENU */
+const buttons=document.querySelectorAll(".menu-btn");
+
+buttons.forEach(btn=>{
+    btn.addEventListener("click",()=>{
+
+        buttons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+
+        loadPage(btn.dataset.page);
+    });
+});
+
+</script>
+
+</body>
+</html>
