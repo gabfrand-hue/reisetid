@@ -10,20 +10,16 @@ body{
     margin:0;
     font-family:Arial, Helvetica, sans-serif;
     background:#f4f6f8;
-    color:#222;
+    scroll-behavior:smooth;
 }
 
-/* HEADER */
 header{
     background:#0d2b45;
     color:white;
     padding:20px;
     text-align:center;
 }
-header h1{margin:0;}
-#clock{font-size:14px;margin-top:6px;opacity:0.9;}
 
-/* ALERT */
 .alert{
     background:#ffefc4;
     padding:10px;
@@ -31,14 +27,12 @@ header h1{margin:0;}
     font-weight:bold;
 }
 
-/* LAYOUT */
 .container{
     display:flex;
     gap:20px;
     padding:20px;
 }
 
-/* SIDEBAR */
 .sidebar{
     width:280px;
     background:white;
@@ -47,39 +41,29 @@ header h1{margin:0;}
     box-shadow:0 2px 8px rgba(0,0,0,0.08);
     height:fit-content;
 }
-.sidebar ul{
-    list-style:none;
-    padding:0;
-}
-.sidebar li{
-    padding:8px 0;
+
+.sidebar h2{margin-top:0;}
+
+.sidebar a{
+    display:block;
+    padding:10px 0;
+    color:#222;
+    text-decoration:none;
     border-bottom:1px solid #eee;
 }
-
-/* FAVORITTER */
-.quick-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-.quick-buttons button{
-    border:none;
-    background:#0d2b45;
-    color:white;
-    padding:8px 12px;
-    border-radius:8px;
-    cursor:pointer;
+.sidebar a:hover{
+    color:#0d2b45;
+    font-weight:bold;
 }
 
 /* MAIN GRID */
 .main{
     flex:1;
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
     gap:20px;
 }
 
-/* CARD */
 .card{
     background:white;
     border-radius:12px;
@@ -87,83 +71,40 @@ header h1{margin:0;}
     overflow:hidden;
 }
 
-/* CLICKABLE HEADER */
 .card-header{
     padding:15px 20px;
-    cursor:pointer;
-    background:#ffffff;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
     font-weight:bold;
-    color:#0d2b45;
+    background:#fff;
     border-bottom:1px solid #eee;
+    color:#0d2b45;
 }
 
-.card-header:hover{
-    background:#f7f9fb;
-}
-
-/* COLLAPSIBLE CONTENT */
 .card-content{
     padding:20px;
-    display:none;
 }
 
-.card.open .card-content{
-    display:block;
-}
-
-/* STATUS BOXES */
 .info-box{
     padding:10px;
-    margin-top:8px;
     border-left:4px solid;
+    margin-top:10px;
     border-radius:4px;
     font-size:14px;
 }
-.info-blue{background:#e9f3ff;border-color:#1976d2;}
-.info-green{background:#eaf7ea;border-color:#2e7d32;}
-.info-yellow{background:#fff8e1;border-color:#f9a825;}
-.info-red{background:#fdecea;border-color:#d32f2f;}
 
-/* FOOTER */
+.info-blue{background:#e9f3ff;border-color:#1976d2;}
+.info-yellow{background:#fff8e1;border-color:#f9a825;}
+.info-green{background:#eaf7ea;border-color:#2e7d32;}
+
 footer{
     text-align:center;
     padding:15px;
-    font-size:13px;
     color:#666;
-}
-
-/* MODAL */
-.modal{
-    display:none;
-    position:fixed;
-    left:0;top:0;
-    width:100%;height:100%;
-    background:rgba(0,0,0,0.45);
-}
-.modal-content{
-    background:white;
-    max-width:600px;
-    margin:8% auto;
-    padding:25px;
-    border-radius:12px;
-}
-.close-btn{
-    margin-top:12px;
-    background:#0d2b45;
-    color:white;
-    border:none;
-    padding:10px 14px;
-    border-radius:8px;
-    cursor:pointer;
 }
 
 /* MOBILE */
 @media(max-width:900px){
-    .container{flex-direction:column;}
-    .sidebar{width:auto;}
+.container{flex-direction:column;}
+.sidebar{width:auto;}
 }
 </style>
 </head>
@@ -172,7 +113,6 @@ footer{
 
 <header>
 <h1>Ansattportal</h1>
-<div id="clock"></div>
 </header>
 
 <div class="alert">
@@ -181,89 +121,108 @@ footer{
 
 <div class="container">
 
-<!-- SIDEBAR -->
+<!-- SIDEMENY -->
 <aside class="sidebar">
 <h2>📌 Hurtigmeny</h2>
-<ul>
-<li>🧭 Kom i gang</li>
-<li>📅 Rotasjon & arbeidstid</li>
-<li>💰 Lønn & reiseregning</li>
-<li>🧾 Overtid & reisetid</li>
-<li>👷 HMS & varsling</li>
-<li>👥 Tillitsvalgte</li>
-<li>💡 Nyttig å vite</li>
-</ul>
 
-<h2>⭐ Favoritter</h2>
-<div class="quick-buttons">
-<button>Timeregistrering</button>
-<button>Turnus</button>
-<button>Ferie</button>
-<button>Avvik</button>
-</div>
+<a href="#hva-skjer">🔵 Hva skjer nå?</a>
+<a href="#tillitsvalgte">👥 Tillitsvalgte</a>
+<a href="#kom-i-gang">🧭 Kom i gang</a>
+<a href="#rettigheter">📑 Rettigheter & avtaler</a>
+<a href="#nyttig">💡 Nyttig å vite</a>
+
 </aside>
 
 <!-- MAIN -->
 <section class="main">
 
-<!-- CARD -->
-<div class="card open">
-<div class="card-header">🔵 Hva skjer nå? <span>▼</span></div>
+<!-- HVA SKJER -->
+<div class="card" id="hva-skjer">
+<div class="card-header">🔵 Hva skjer nå?</div>
 <div class="card-content">
+
 <div class="info-box info-blue">
 • Ny mobiliseringsplan publisert<br>
 • Neste medlemsmøte: Fredag kl 14:00
 </div>
+
 <div class="info-box info-yellow">
 ⚠️ Oppdaterte rutiner for reiseregning — les før innsending.
 </div>
+
 </div>
 </div>
 
-<div class="card">
-<div class="card-header">👥 Tillitsvalgte <span>▼</span></div>
+<!-- TILLITSVALGTE -->
+<div class="card" id="tillitsvalgte">
+<div class="card-header">👥 Tillitsvalgte</div>
 <div class="card-content">
-<p>Tillitsvalgte hjelper med arbeidstid, lønn, diett og arbeidsmiljø.</p>
+
 <div class="info-box info-green">
-✔ Tillitsvalgt: <strong>Gabriel Attermann Frandsen</strong><br>
-Tidlig dialog løser flest saker.
+<strong>Gabriel Attermann Frandsen</strong><br>
+Tillitsvalgt<br>
+📧 gabriel@gmail.com
 </div>
+
+<div class="info-box info-green">
+<strong>Navn Eksempel</strong><br>
+Hovedtillitsvalgt<br>
+📧 eksempel@gmail.com
+</div>
+
+<div class="info-box info-green">
+<strong>Navn Eksempel 2</strong><br>
+Vernetjeneste / Tillitsvalgt<br>
+📧 eksempel2@gmail.com
+</div>
+
 </div>
 </div>
 
-<div class="card">
-<div class="card-header">🧭 Kom i gang <span>▼</span></div>
+<!-- KOM I GANG -->
+<div class="card" id="kom-i-gang">
+<div class="card-header">🧭 Kom i gang</div>
 <div class="card-content">
+
+<p><strong>Dette er viktig for nye ansatte:</strong></p>
+
 <ul>
-<li>Kontaktpersoner</li>
-<li>Melde fravær og sykdom</li>
-<li>Rotasjon og mobilisering</li>
-<li>Lønnsslipp & reiseregning</li>
+<li>Kontaktpersoner og nøkkelroller</li>
+<li>Hvordan melde fravær og sykdom</li>
+<li>Arbeidstid, rotasjon og mobilisering</li>
+<li>Hvor du finner lønnsslipp og reiseregning</li>
+<li>Praktisk info om mat, bolig og parkering</li>
 </ul>
+
+<div class="info-box info-blue">
+Tips: Start alltid her hvis du er ny i rotasjon.
+</div>
+
 </div>
 </div>
 
-<div class="card">
-<div class="card-header">📑 Rettigheter & avtaler <span>▼</span></div>
+<!-- RETTIGHETER -->
+<div class="card" id="rettigheter">
+<div class="card-header">📑 Rettigheter & avtaler</div>
 <div class="card-content">
 <ul>
 <li>LOK / tariff forklart enkelt</li>
-<li>Diett og utlegg</li>
+<li>Diett og reiseregning</li>
 <li>Overtid og reisetid</li>
+<li>Hvordan ta opp en sak</li>
 </ul>
-<div class="info-box info-red">
-❗ Kritiske HMS-avvik meldes umiddelbart.
-</div>
 </div>
 </div>
 
-<div class="card">
-<div class="card-header">💡 Nyttig å vite <span>▼</span></div>
+<!-- NYTTIG -->
+<div class="card" id="nyttig">
+<div class="card-header">💡 Nyttig å vite</div>
 <div class="card-content">
 <ul>
 <li>Vanlige feil på reiseregning</li>
 <li>Lønnsberegning i rotasjon</li>
 <li>Tips til nyansatte</li>
+<li>Hva gjør du ved endret plan</li>
 </ul>
 </div>
 </div>
@@ -274,43 +233,6 @@ Tidlig dialog løser flest saker.
 <footer>
 Intern informasjonsportal — oversikt, samarbeid og enkel tilgang.
 </footer>
-
-<!-- WELCOME -->
-<div id="welcomeModal" class="modal">
-<div class="modal-content">
-<h2>Velkommen 👋</h2>
-<p>Start med «Kom i gang» i hurtigmenyen.</p>
-<button class="close-btn" onclick="closeModal()">Lukk</button>
-</div>
-</div>
-
-<script>
-/* CLOCK */
-function updateClock(){
-  document.getElementById("clock").innerText =
-    new Date().toLocaleString("no-NO");
-}
-setInterval(updateClock,1000);
-updateClock();
-
-/* COLLAPSIBLE CARDS */
-document.querySelectorAll(".card-header").forEach(header=>{
-  header.addEventListener("click",()=>{
-    header.parentElement.classList.toggle("open");
-  });
-});
-
-/* WELCOME */
-function closeModal(){
-  document.getElementById("welcomeModal").style.display="none";
-  localStorage.setItem("welcomeShown","yes");
-}
-window.onload=function(){
-  if(!localStorage.getItem("welcomeShown")){
-    document.getElementById("welcomeModal").style.display="block";
-  }
-}
-</script>
 
 </body>
 </html>
