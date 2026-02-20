@@ -1,306 +1,50 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Industri Ufokus – Infoportal</title>
-
-<style>
-
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f6f8;
-    color:#111827;
-}
-
-/* ===== LOGIN ===== */
-
-#login{
-    position:fixed;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#f4f6f8;
-    z-index:999;
-}
-
-.login-card{
-    width:420px;
-    background:white;
-    border-radius:12px;
-    padding:30px;
-    box-shadow:0 4px 18px rgba(0,0,0,0.08);
-    text-align:center;
-}
-
-input{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    border:1px solid #ccc;
-    border-radius:8px;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    margin-top:12px;
-    border:none;
-    border-radius:8px;
-    background:#0d2b45;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* ===== APP ===== */
-
-#app{
-    display:none;
-}
-
-.app{
-    display:flex;
-    min-height:100vh;
-}
-
-/* ===== SIDEBAR ===== */
-
-.sidebar{
-    width:240px;
-    background:white;
-    border-right:1px solid #e5e7eb;
-    padding:20px;
-    flex-shrink:0;
-}
-
-.sidebar h2{
-    margin-top:0;
-}
-
-.menu-btn{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    width:100%;
-    border:none;
-    background:none;
-    padding:12px 14px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:600;
-    color:#111827;
-    margin-bottom:8px;
-}
-
-.menu-btn:hover{
-    background:#f1f5f9;
-}
-
-.menu-btn.active{
-    background:#0d2b45;
-    color:white;
-}
-
-/* aktiv når man scroller i info */
-.menu-btn.section-active{
-    background:#0d2b45;
-    color:white;
-}
-
-/* ===== CONTENT ===== */
-
-.content{
-    flex:1;
-    padding:35px;
-}
-
-.content-wrapper{
-    background:white;
-    border-radius:12px;
-    padding:30px;
-    box-shadow:0 4px 18px rgba(0,0,0,0.06);
-    min-height:500px;
-}
-
-/* ===== ERROR ===== */
-
-.error-box{
-    background:#fee2e2;
-    border-left:4px solid #dc2626;
-    padding:15px;
-    border-radius:6px;
-}
-
-/* ===== MOBILE ===== */
-
-@media(max-width:900px){
-
-    .app{
-        flex-direction:column;
-    }
-
-    .sidebar{
-        width:100%;
-        border-right:none;
-        border-bottom:1px solid #e5e7eb;
-    }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <title>Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- LOGIN -->
-<div id="login">
-<div class="login-card">
+<div class="layout">
 
-<h2>Industri Ufokus</h2>
-<p>Intern infoportal</p>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>Meny</h2>
 
-<input type="password" id="pw" placeholder="Passord">
-<button onclick="doLogin()">Logg inn</button>
+        <a href="index.html" class="menu-item active">Velkommen</a>
+        <a href="info.html" class="menu-item">Info – Mobilisering</a>
+        <a href="tillitsvalgte.html" class="menu-item">Tillitsvalgte</a>
+        <a href="kalkulator.html" class="menu-item">Kalkulator</a>
+    </aside>
 
-<p id="msg" style="color:red;"></p>
+    <!-- Main content -->
+    <main class="content">
+        <h1>Velkommen</h1>
 
-</div>
-</div>
+        <p>
+            Denne portalen er laget for informasjon om rotasjon, reiser og praktiske forhold.
+        </p>
 
-<!-- APP -->
-<div id="app" class="app">
+        <h2>Start her</h2>
+        <ol>
+            <li>Les Info – Mobilisering</li>
+            <li>Sjekk praktisk informasjon</li>
+            <li>Lagre kontaktinformasjon</li>
+        </ol>
 
-<!-- MENU -->
-<div class="sidebar">
-
-<h2>Meny</h2>
-
-<button class="menu-btn active" data-page="welcome.html">
-Velkommen
-</button>
-
-<button class="menu-btn" data-page="info.html" data-scrollspy="true">
-Info – Mobilisering
-</button>
-
-<button class="menu-btn" data-page="tillitsvalgte.html">
-Tillitsvalgte
-</button>
-
-</div>
-
-<!-- CONTENT -->
-<div class="content">
-<div class="content-wrapper" id="pageContent">
-Laster...
-</div>
-</div>
+        <h2>Hva finner du i portalen?</h2>
+        <ul>
+            <li><strong>Velkommen</strong> – oversikt</li>
+            <li><strong>Info – Mobilisering</strong> – praktisk info</li>
+            <li><strong>Tillitsvalgte</strong> – kontaktinformasjon</li>
+            <li><strong>Kalkulator</strong> – beregning av timer/tillegg</li>
+        </ul>
+    </main>
 
 </div>
-
-<script>
-
-const PASSWORD="Ufokus";
-
-/* ===== LOGIN ===== */
-
-function doLogin(){
-
-    const pw=document.getElementById("pw").value.trim();
-
-    if(pw===PASSWORD){
-
-        document.getElementById("login").style.display="none";
-        document.getElementById("app").style.display="flex";
-
-        loadPage("welcome.html");
-
-    }else{
-        document.getElementById("msg").innerText="Feil passord";
-    }
-}
-
-/* ===== LOAD PAGE ===== */
-
-function loadPage(page){
-
-    fetch(page)
-    .then(r=>{
-        if(!r.ok) throw new Error();
-        return r.text();
-    })
-    .then(html=>{
-        document.getElementById("pageContent").innerHTML=html;
-        initScrollSpy();
-    })
-    .catch(()=>{
-        document.getElementById("pageContent").innerHTML=
-        `<div class="error-box">
-        Kunne ikke laste <b>${page}</b><br>
-        Sjekk at filen finnes i samme mappe.
-        </div>`;
-    });
-}
-
-/* ===== MENU ===== */
-
-const buttons=document.querySelectorAll(".menu-btn");
-
-buttons.forEach(btn=>{
-
-    btn.addEventListener("click",()=>{
-
-        buttons.forEach(b=>{
-            b.classList.remove("active");
-            b.classList.remove("section-active");
-        });
-
-        btn.classList.add("active");
-
-        loadPage(btn.dataset.page);
-    });
-
-});
-
-/* ===== SCROLL SPY ===== */
-
-function initScrollSpy(){
-
-    const sections=
-        document.querySelectorAll("#pageContent h2[id]");
-
-    if(!sections.length) return;
-
-    const infoBtn=
-        document.querySelector('[data-page="info.html"]');
-
-    const observer=new IntersectionObserver((entries)=>{
-
-        entries.forEach(entry=>{
-
-            if(entry.isIntersecting && infoBtn){
-
-                buttons.forEach(b=>
-                    b.classList.remove("section-active"));
-
-                infoBtn.classList.add("section-active");
-            }
-
-        });
-
-    },{
-        root:null,
-        rootMargin:"-40% 0px -50% 0px",
-        threshold:0
-    });
-
-    sections.forEach(s=>observer.observe(s));
-}
-
-</script>
 
 </body>
 </html>
